@@ -16,17 +16,8 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	
 	<!-- CSS -->
-	<link type="text/css" rel="stylesheet" href="../assets/css/juri.css">
-	
-	<script type="text/javascript">
-	$(document).ready(function() {
-		  $('.list-group-item').click(function(e) {
-			    e.preventDefault();
-			    $('.list-group-item').removeClass('active');
-			    $(this).addClass('active');
-			  });
-		});
-	</script>
+	<link type="text/css" rel="stylesheet" href="../css/juri.css">
+
 </head>
 <body>
 
@@ -36,20 +27,64 @@
 			<div class = "row">
 				<div class="col-md-3 center">
 					<div id="card">
-						  <img src="https://raw.githubusercontent.com/talha08/talha08.github.io/master/images/photo.jpg" alt="John" style="width:100%">
+						  <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" alt="user" style="width:100%">
 						  <br>
-						  <h3><b>MD. ABU TALHA</b></h3>
-						  <p id="profile_title">Full Stack Web Developer</p>
-						  <p>InfancyIT</p>
-							  <div style="margin: 24px 0;">
-							    <a href="https://www.linkedin.com/in/md-abu-talha/" target="_blank" id="profile_a"><i class="fa fa-linkedin"></i></a>
-							    <a href="https://www.facebook.com/talha.sust.cse" target="_blank"><i class="fa fa-facebook"></i></a>
-							    <a href="https://github.com/talha08" target="_blank"><i class="fa fa-github"></i></a>
-							    <a href="https://medium.com/@talhaqc" target="_blank"><i class="fa fa-medium"></i></a>
-							  </div>
-						  <p><a href="talha08.github.io" id="profile_button">Profile</a></p>
+						  <h3 class="center"><b>사용자 닉네임</b></h3>
+						  <p id="profile_title">안녕하세요 혼캠핑 자주 가는 20대 여자입니다~!</p>
+						  <p>연령대 : 20대</p>
+						  <p><a href="#" id="profile_button">프로필 수정</a></p>
 					</div>			
   				</div>
+  				
+  				<div class="col-md-4 " style="border : 1px solid black;">
+  				<h3 class="text-center"><b>친구 목록</b></h3>
+		   			 <table class="table table-striped custab">
+						    <thead>
+							        <tr>
+							            <th>닉네임</th>
+							            <th>연령대</th>
+							            <th class="text-center">Action</th>
+							        </tr>
+						    </thead>
+						            <tr>
+							                <td>News</td>
+							                <td>News Cate</td>
+							                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-zoom-in"></span>자세히</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
+						            </tr>
+						            <tr>
+							                <td>Products</td>
+							                <td>Main Products</td>
+							                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-zoom-in"></span>자세히</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
+						            </tr>
+						            <tr>
+							                <td>Blogs</td>
+							                <td>Parent Blogs</td>
+							                <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span class="glyphicon glyphicon-zoom-in"></span>자세히</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a></td>
+						            </tr>
+						            
+										<tr>
+							                <td colspan="3" class="text-center">
+							                	<button>더보기</button>
+							                </td>
+							           </tr>
+						    </table>
+  				</div>
+  				
+  				<div class="col-md-3 center" style=" cursor: pointer; border:1px solid red;" onclick="location.href='www.naver.com'">
+    			<div class="page">
+					
+					  <button class="fun-btn">press for fun</button>
+					
+					</div>				
+  				</div>
+  				
+  				<div class="col-md-9 center">
+  					<div class="jumbotron">
+	  					 <h1>Hello, world!</h1>
+	  					 <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  					</div>
+  				</div>
+			
 			</div>
 			
 		</div>
