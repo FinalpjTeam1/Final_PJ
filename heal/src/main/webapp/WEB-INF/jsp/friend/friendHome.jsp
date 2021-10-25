@@ -22,7 +22,7 @@
 <body>
 
 	<section>
-		<div class="container-fluid " style=" margin-top: 20%; padding-left: 10%; border : 1px solid black;">
+		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
 			
 			<div class = "row">
 				<div class="col-md-3 center">
@@ -32,7 +32,7 @@
 						  <h3 class="center"><b>사용자 닉네임</b></h3>
 						  <p id="profile_title">안녕하세요 혼캠핑 자주 가는 20대 여자입니다~!</p>
 						  <p>연령대 : 20대</p>
-						  <p><a href="#" id="profile_button">프로필 수정</a></p>
+						  <p><a href="myProfile" id="profile_button">프로필 수정</a></p>
 					</div>			
   				</div>
   				
@@ -64,7 +64,8 @@
 						            
 										<tr>
 							                <td colspan="3" class="text-center">
-							                	<button>더보기</button>
+							                <a href="friendList" type="button"  class="btn" id="profile_button">더보기</a>
+							                	
 							                </td>
 							           </tr>
 						    </table>
@@ -73,18 +74,16 @@
   				<div class="col-md-3 center" style=" cursor: pointer; border:1px solid red;" onclick="location.href='www.naver.com'">
     			<div class="page">
 					
-					  <button class="fun-btn">press for fun</button>
-					
+					  <button class="fun-btn">친구 찾기</button>
+						
 					</div>				
   				</div>
   				
-  				<div class="col-md-9 center">
-  					<div class="jumbotron">
-	  					 <h1>Hello, world!</h1>
-	  					 <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  				<div class="col-md-7 center" >
+  					<div style="background-color: gray; width: 800px; height: 300px;"> 
+  					<h2 class="center">채팅방 부분</h2>   					
   					</div>
   				</div>
-			
 			</div>
 			
 		</div>
