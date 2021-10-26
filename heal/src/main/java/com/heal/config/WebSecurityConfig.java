@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			.authorizeRequests()
 				.antMatchers("/adminOnly").hasAuthority("ROLE_ADMIN")
-				.antMatchers("/", "/friend/friendHome","/friend/myProfile","/friend/friendList","/friend/friendDetail")
+				.antMatchers("/","/trail/sidoMap", "/trail/trailMap", "/friend/friendHome","/friend/myProfile","/friend/friendList","/friend/friendDetail")
 				.permitAll() //로그인 인증 없이 들어 갈 수 있는 페이지
 				.antMatchers("/assets/**","/css/**","/js/**","/font/**","/img/**","/syntax-highlighter/**").permitAll()
 				.anyRequest().authenticated()
