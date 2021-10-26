@@ -7,12 +7,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>내 프로필 | Hi-Camper</title>
 	<!-- Bootstrap core JS-->
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
       <!-- 합쳐지고 최소화된 최신 CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+	<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	
 	<!-- CSS -->
 	 <link  rel="stylesheet" href="../css/profileForm.css" media="all">
 	<link type="text/css" rel="stylesheet" href="../css/juri.css">
