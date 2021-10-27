@@ -9,17 +9,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users {
-
+public class Member {
+	
 	private String id;
-	private String password;
+	private String pw;
 	private String nick;
 	private String mobile;
 	private String gender;
 	private String age;
 	private String last_login;
 	private String entry_date;
-	private String enabled;
-	private String auth;
-	
+	private String grade;
+
 }

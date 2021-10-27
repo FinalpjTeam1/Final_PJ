@@ -157,18 +157,18 @@
 							<div class="row">
 								<div class="col-lg-12">
 								<!-- 로그인 폼 시작 -->
-									<form id="login_form" action="login" method="post" role="form" style="display: block;">
+									<form  action="/login" method="post" name="loginForm" id="loginForm" style="display: block;">
 										<div class="form-group">
-											<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
+											<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Username">
 										</div>
 										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
+											<input type="password" name="pw" id="pw" tabindex="2" class="form-control" placeholder="Password">
 										</div>
 
 										<div class="form-group">
 											<div class="row">
 												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
+													<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="login">
 												</div>
 											</div>
 										</div>
