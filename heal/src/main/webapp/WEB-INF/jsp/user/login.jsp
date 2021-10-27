@@ -157,7 +157,7 @@
 							<div class="row">
 								<div class="col-lg-12">
 								<!-- 로그인 폼 시작 -->
-									<form  action="/login" method="post" name="loginForm" id="loginForm" style="display: block;">
+									<form  action="login" method="post" name="loginForm" id="loginForm" style="display: block;">
 										<div class="form-group">
 											<input type="text" name="id" id="id" tabindex="1" class="form-control" placeholder="Username">
 										</div>

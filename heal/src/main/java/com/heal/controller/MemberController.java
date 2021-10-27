@@ -1,5 +1,8 @@
 package com.heal.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,12 +26,9 @@ public class MemberController {
 	
 	/**로그인 */
 	@RequestMapping("/login")
-	public String login(String id, String pw, HttpSession session) {
-		log.debug("login user :: " + id + ", " + pw);
+	public String login(String id, String pw, HttpSession session,HttpServletResponse response)throws Exception  {
 
 		String grade = memberService.login(id, pw);
-		log.debug("login grade :: " + grade);
-
 		Member dto = memberService.loginToMember(id, pw);		
 		log.debug("dto :: " + dto);
 		
@@ -38,12 +38,20 @@ public class MemberController {
 			session.setAttribute("dto", dto);
 			if(grade.equals("A")) {
 				log.debug("login admin Success :: ");
-				return "/";
+				return "redirect:/";
 			} else {
 				log.debug("login user Success :: ");
-				return "/friend/friendHome";
+				return "redirect:/";
 			}
 		} else {
+			//로그인 실패시 
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.append("<script>");
+			out.append("alert('[안내] 로그인 후 이용 가능한 서비스 입니다.');");
+			out.append("location.replace('/loginForm');");
+			out.append("</script>");
+			
 			log.debug("login Fail :: ");
 			return "/user/login";
 		}
