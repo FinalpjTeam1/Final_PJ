@@ -16,7 +16,14 @@
 
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="/css/juri.css">
-		<link type="text/css" rel="stylesheet" href="../css/juri.css">
+	
+	<style>
+	.tag{
+			background-color: skyblue;
+		    border-radius: 70%;
+	}
+	
+	</style>
 
 </head>
 <body>
@@ -32,6 +39,7 @@
 						  <h3 class="center"><b>사용자 닉네임</b></h3>
 						  <p id="profile_title">안녕하세요 혼캠핑 자주 가는 20대 여자입니다~!</p>
 						  <p>연령대 : 20대</p>
+						  <span class="tag">#캠핑</span>
 						  <p><a href="myProfile" id="profile_button">프로필 수정</a></p>
 					</div>			
   				</div>
