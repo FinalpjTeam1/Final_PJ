@@ -17,6 +17,30 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 	
+	<insert id="insertMember"  parameterType="map">
+	Insert into member(
+	id, pw, nick, mobile, gender, age
+	)	
+	VALUES
+	(
+	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}
+	)
+	
+	</insert>
+	
+	<select id="idCheck" resultType="com.heal.dto.Member">
+	SELECT 
+	*
+	FROM MEMBER
+	WHERE id= #{test00001}
+	</select>
+	
+	<select id="updateMember">
+	UPDATE member
+	SET mobile = #{mobile} , profile = #{profile}
+	WHERE id = #{id}
+	
+	</select>
 	
 </mapper>
 
