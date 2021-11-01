@@ -1,5 +1,7 @@
 package com.heal.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +19,12 @@ public class Member {
 	private String mobile;
 	private String gender;
 	private String age;
+	private String grade;
+	private String profile;
 	private String last_login;
 	private String entry_date;
-	private String grade;
+	
+	//파일 업로드
+	private MultipartFile file;
 
 }
