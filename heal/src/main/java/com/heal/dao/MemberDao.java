@@ -19,11 +19,5 @@ public interface MemberDao {
 	
 	/** login : return domain */
 	public Member loginToMember(String id, String pw);
-	
-	public Member idCheck(String MemberId);
-	
-	public int insertMember(Member dto);
-	
-	public boolean updateMember(Member dto);
 
 }

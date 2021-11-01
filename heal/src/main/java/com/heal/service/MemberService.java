@@ -39,38 +39,6 @@ public class MemberService {
 		log.debug("loginToMember :: " + dto);
 		return dto;
 	}
-
-	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	public Member memberSelect(String id) {
-		log.debug("memberSelect" + id);
-		Member dto = memberDao.idCheck(id);
-		return dto;
-	}
-
-	/**
-	 * 
-	 * @param dto
-	 * @return
-	 */
-	public int insertMember(Member dto) {
-		try {
-			memberDao.insertMember(dto);
-			log.debug("dao result::" + dto);
-			return 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return 2;
-		}
-	}
-
-	public boolean updateMember(Member dto) {
-		memberDao.updateMember(dto);
-		return true;
-	}
 	
 
 }
