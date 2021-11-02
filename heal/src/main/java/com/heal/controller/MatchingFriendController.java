@@ -39,6 +39,9 @@ public class MatchingFriendController {
 	 	@Autowired
 	 	private MatchingFriendService friendService;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -70,7 +73,10 @@ public class MatchingFriendController {
 		
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 		
@@ -199,6 +205,9 @@ public class MatchingFriendController {
 		}
 		
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

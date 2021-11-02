@@ -42,6 +42,7 @@ public class MemberService {
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	/**
 	 * 
 	 * @param id
@@ -74,6 +75,8 @@ public class MemberService {
 		return true;
 	}
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	/** 로그인 날짜 갱신

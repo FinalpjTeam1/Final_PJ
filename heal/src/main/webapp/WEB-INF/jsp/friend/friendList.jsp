@@ -196,12 +196,15 @@
 			                    <div class="card-block">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			                        <figure class="profile">
 			                            <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" class="profile-avatar" alt="">
 			                        </figure>
 			                        <h4 class="card-title mt-3">아이유</h4>
 			                       <span style="float:right;"><button  type="button" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-heart"></i></button></span> 
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 			                        <h4 class="card-title mt-3">${list.nick }</h4>

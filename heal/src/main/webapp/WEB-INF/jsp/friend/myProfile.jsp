@@ -59,6 +59,9 @@
 		
 		//이미지 함수 끝
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
 		//체크박스 체크 
 		function count_ck(obj) {
@@ -77,6 +80,7 @@
 	    		return false;
 	    	}
 		}
+<<<<<<< Updated upstream
 
 		//폼  체크 
 		function formCheck() {
@@ -127,6 +131,39 @@
 	    		return false;
 	    	}
 		}
+
+		//폼  체크 
+		function formCheck() {
+			
+			//(1) 자기소개 
+			var intro = document.getElementById('intro').value;
+			
+			if(intro.trim() == ""){
+				alert('[안내] 자기소개를 입력해주세요');
+				$('#intro').focus();			
+				return false ;
+			} 
+			
+			if(intro.length > 20){
+				alert('[안내] 자기소개를 20자 이하로 입력해주세요');
+				$('#intro').focus();
+				return false;
+			}
+			
+			//(2) 관심사 
+			var objWrite3 = document.getElementsByName("interest");
+			
+			for(var i=0;i<objWrite3.length;i++){
+				    if(objWrite3[i].checked == false){
+				        alert("[안내] 관심사를 선택해주세요.");
+				        return false;
+				    }
+				    $('#profileForm').submit();
+			}    
+			
+
+>>>>>>> Stashed changes
+=======
 
 		//폼  체크 
 		function formCheck() {
@@ -174,6 +211,7 @@
 <section>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
 		
 			<div class="page-wrapper bg-dark p-t-100 p-b-50">
@@ -186,11 +224,18 @@
 		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; ">
 			<div class="page-wrapper bg-dark p-t-100 p-b-50">
 >>>>>>> Stashed changes
+=======
+		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; ">
+			<div class="page-wrapper bg-dark p-t-100 p-b-50">
+>>>>>>> Stashed changes
 			        <div class="wrapper wrapper--w900">   
 			        <!-- 폼 처음 -->
 			        <form name = "profileForm" id="profileForm" action="/saveProfile" method="post"  enctype="multipart/form-data" >
 			              <div class="card card-6">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -204,9 +249,12 @@
 			                            <div class="value">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			                                <input class="input--style-6" type="text" name="full_name">
 			                            </div>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 			                                <input class="input--style-6" type="text" name="intro" id="intro" maxlength="30" >
@@ -218,6 +266,7 @@
 			                            <div class="name">관심사</div>
 				                        	 <div class="value" style="width:600px; height: 200px; border:1px solid red; ">
 												 <!-- 처음 -->
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 													<div class="form-check">
@@ -233,6 +282,8 @@
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 											  <label class="x-large side" ><input type="checkbox" onclick="count_ck(this)" name="interest" value="캠핑">캠핑</label>
 										      <label class="x-large side"><input type="checkbox" onclick="count_ck(this)" name="interest" value="등산"> 등산</label>
 										      <label class="x-large side"><input type="checkbox" onclick="count_ck(this)" name="interest" value="차박"> 차박</label>
@@ -246,6 +297,9 @@
   									    	 <label class="x-large side" style="margin-left:4%"><input type="checkbox" onclick="count_ck(this)" name="interest" value="맛집">맛집</label>
 										      <label class="x-large side"style="margin-left:2.5%"><input type="checkbox" onclick="count_ck(this)" name="interest" value="반려동물과함께">반려동물과함께</label>		
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -273,10 +327,13 @@
 			                <div class="card-footer">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 			                    <button class="btn btn--radius-2 btn--blue-2" type="submit" style="margin-left: 45%">등록하기</button>
 			                </div>
 			            </div>
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 			                    <button class="btn btn--radius-2 btn--blue-2" onclick="formCheck();" style="margin-left: 35%">등록하기</button>	                 
@@ -285,6 +342,9 @@
 			            </form>
 			            <!-- 폼 마지막 -->
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

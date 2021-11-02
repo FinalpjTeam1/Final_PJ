@@ -48,6 +48,9 @@
 
 	</script>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -62,6 +65,7 @@
 			<div class = "row">
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				<div class="col-md-3 center">
 					<div id="card">
 						  <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" alt="user" style="width:100%">
@@ -72,6 +76,8 @@
 						  <p><a href="myProfile" id="profile_button">프로필 수정</a></p>
 					</div>			
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 					<div class="col-md-3 center">
@@ -98,6 +104,9 @@
 							</c:if>
 						</div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
