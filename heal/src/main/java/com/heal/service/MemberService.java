@@ -40,6 +40,7 @@ public class MemberService {
 		return dto;
 	}
 
+<<<<<<< Updated upstream
 	/**
 	 * 
 	 * @param id
@@ -71,5 +72,15 @@ public class MemberService {
 		memberDao.updateMember(dto);
 		return true;
 	}
+=======
+	/** 로그인 날짜 갱신
+	 * @param id */
+	public int updateLastLogin(String last, String id) {
+		return memberDao.updateLastLogin(last, id);
+	}
+
+
+	
+>>>>>>> Stashed changes
 
 }

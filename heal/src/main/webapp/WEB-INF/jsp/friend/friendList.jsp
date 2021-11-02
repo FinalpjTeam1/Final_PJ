@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,23 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="../css/juri.css">
+	
+	<script>
+	
+		function profileDelete() {
+		var cancel = confirm("[안내] 프로필을 삭제하시겠습니까?");
+		
+		if(cancel == true){		
+			alert('[안내] 삭제 되었습니다.');
+	    	$('#deleteForm').submit();
+		}else{
+			return false;
+		}
+	}
+
+	</script>
+	
+	
 	<style type="text/css">
 		
 	h5 {
@@ -168,97 +187,41 @@
 <section>
 		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
 				<div class="row">
+<c:forEach var="list" items="${profile}" varStatus="status"> 
+		
 					<!-- 카드 콘텐츠 -->
 					<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
 			                <div class="card">
-			                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
+			                    <img class="card-img-top" src="/profile/${list.fileName} ">
 			                    <div class="card-block">
+<<<<<<< Updated upstream
 			                        <figure class="profile">
 			                            <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" class="profile-avatar" alt="">
 			                        </figure>
 			                        <h4 class="card-title mt-3">아이유</h4>
 			                       <span style="float:right;"><button  type="button" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-heart"></i></button></span> 
+=======
+			                        <h4 class="card-title mt-3">${list.nick }</h4>
+			            <!--  <span style="float:right;"><button  type="button" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-heart"></i></button></span>--> 
+>>>>>>> Stashed changes
 			                        <div class="meta">
-			                            <a>연령대:20대</a>
+			                            <a>연령대:${list.age }</a>
 			                        </div>
 			                        <div class="card-text">
-										안녕하세용 
+										${list.intro }
 			                        </div>
 			                    </div>
 			                     <div class="card-footer">
 			                        <small>Last updated 3 mins ago</small>
-			                        <button class="btn btn-secondary float-right btn-sm">show</button>
-			                        <a class="btn btn-secondary float-right btn-sm" href="friendDetail" >자세히</a>
-			                    </div>
-			                </div>
-			            </div>
-			            
-			            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-			                <div class="card">
-			                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
-			                    <div class="card-block">
-			                        <figure class="profile">
-			                            <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" class="profile-avatar" alt="">
-			                        </figure>
-			                        <h4 class="card-title mt-3">아이유</h4>
-			                        <div class="meta">
-			                            <a>연령대:20대</a>
-			                        </div>
-			                        <div class="card-text">
-										안녕하세용 
-			                        </div>
-			                    </div>
-			                     <div class="card-footer">
-			                        <small>Last updated 3 mins ago</small>
-			                        <button class="btn btn-secondary float-right btn-sm">show</button>
-			                    </div>
-			                </div>
-			            </div>
-			            
-			            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-			                <div class="card">
-			                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
-			                    <div class="card-block">
-			                        <figure class="profile">
-			                            <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" class="profile-avatar" alt="">
-			                        </figure>
-			                        <h4 class="card-title mt-3">아이유</h4>
-			                        <div class="meta">
-			                            <a>연령대:20대</a>
-			                        </div>
-			                        <div class="card-text">
-										안녕하세용 
-			                        </div>
-			                    </div>
-			                     <div class="card-footer">
-			                        <small>Last updated 3 mins ago</small>
-			                        <button class="btn btn-secondary float-right btn-sm">show</button>
-			                    </div>
-			                </div>
-			            </div>
-			            
-			            <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-			                <div class="card">
-			                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
-			                    <div class="card-block">
-			                        <figure class="profile">
-			                            <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" class="profile-avatar" alt="">
-			                        </figure>
-			                        <h4 class="card-title mt-3">아이유</h4>
-			                        <div class="meta">
-			                            <a>연령대:20대</a>
-			                        </div>
-			                        <div class="card-text">
-										안녕하세용 
-			                        </div>
-			                    </div>
-			                     <div class="card-footer">
-			                        <small>Last updated 3 mins ago</small>
-			                        <button class="btn btn-secondary float-right btn-sm">show</button>
-			                    </div>
+			                      <button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">삭제하기</button>
+			                      </div>
 			                </div>
 			            </div>
 			            <!-- 카드 콘텐츠 끝 -->
+			             <form action="/deleteProfile" method="post" name="deleteForm" id="deleteForm">
+  							<input type="hidden" id='id' name="id" value="${list.id} ">  					
+  						</form>
+</c:forEach>			            
 				</div>
 				
 				<!-- 페이징 -->
@@ -272,6 +235,8 @@
 					  <a href="#">6</a>
 					  <a href="#">&raquo;</a>
 					</div>
+			</div>
+			<div style="margin-top: 20%">
 			</div>
 	</section>		
 			

@@ -3,6 +3,18 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heal.dao.MemberDao">
+
+		<resultMap type="com.heal.dto.Member" id="member">
+				<result property="id" column="id"/>
+				<result property="nick" column="nick"/>
+				<result property="mobile" column="mobile"/>
+				<result property="gender" column="gender"/>
+				<result property="age" column="age"/>
+				<result property="last_login" column="last_login"/>
+				<result property="entry_date" column="entry_date"/>
+				<result property="grade" column="grade"/>
+		</resultMap>
+		
 	<!-- public String login(String memberId, String memberPw); -->
 	<select id="login" resultType="String" parameterType="map">
 		select grade 
@@ -17,6 +29,7 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 	
+<<<<<<< Updated upstream
 	<insert id="insertMember"  parameterType="map">
 	Insert into member(
 	id, pw, nick, mobile, gender, age
@@ -41,6 +54,11 @@
 	WHERE id = #{id}
 	
 	</select>
+=======
+	<insert id="updateLastLogin" >
+       	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
+      </insert>
+>>>>>>> Stashed changes
 	
 </mapper>
 

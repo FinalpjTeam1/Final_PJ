@@ -1,6 +1,8 @@
 package com.heal.controller;
 
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +38,17 @@ public class MemberController {
 
 		String grade = memberService.login(id, pw);
 		Member dto = memberService.loginToMember(id, pw);		
+
+		//로그인 시간 보내기 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date now = new Date(); 
+		String now_dt = format.format(now);
+
+		String last = now_dt.trim();
+		//왜 안돼
+		int result = memberService.updateLastLogin(id, last);
+		System.out.println("로그인 업데이트"+result);
+		/////////////////////////////
 		log.debug("dto :: " + dto);
 		
 		if(grade != null && dto != null) {

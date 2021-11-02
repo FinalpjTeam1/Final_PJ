@@ -15,7 +15,18 @@
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="../css/juri.css">
 	
+			 <!-- Google Font -->
+	 <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	
+	
 	<style>
+	
+			h1, h2, h3, h4, h5, h6, p, label{
+	     font-family: 'Nanum Gothic', sans-serif; !important;
+	    }
+	    
 		.portfolio{
 		padding:6%;
 		text-align:center;
@@ -55,36 +66,36 @@
 </head>
 <body>
 
-<div class="container portfolio">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="heading">				
-				<img src="https://image.ibb.co/cbCMvA/logo.png" />
-			</div>
-		</div>	
-	</div>
-	<div class="bio-info">
-		<div class="row">
-			<div class="col-md-6">
+	<section>
+		<div class="container-fluid portfolio " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="bio-image">
-							<img src="https://image.ibb.co/f5Kehq/bio-image.jpg" alt="image" />
-						</div>			
-					</div>
-				</div>	
-			</div>
-			<div class="col-md-6">
-				<div class="bio-content">
-					<h1>Hi there, I'm Kshiti</h1>
-					<h6>I am a fresh web designer and I create custom web designs. I'm skilled at writing well-designed, testable and efficient code using current best practices in Web development. I'm a fast learner, hard worker and team player who is proficient in making creative and innovative web pages.</h6>
-					<p>P.S I have no special talent, I'm just passionately curious ;)</p>
+						<div class="heading">				
+							<img src="https://image.ibb.co/cbCMvA/logo.png" />
+						</div>
+					</div>	
+				</div>
+				<div class="bio-info">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="bio-image" >
+										<img src="/profile/${profile.fileName}" style="height: 300px; width: 300px;" alt="image" />
+									</div>			
+								</div>
+							</div>	
+						</div>
+						<div class="col-md-6">
+							<div class="bio-content">
+								<h4 style="margin-top: 20%;">${profile.nick } 님 </h4>
+								<h4>관심사 : ${profile.interest }</h4>
+								<p>${profile.intro }</p>
+							</div>
+						</div>
 				</div>
 			</div>
-			
-			<button>친구 추가</button>
-		</div>	
-	</div>
-</div>
+		</div>
+	</section>		
 </body>
 </html>
