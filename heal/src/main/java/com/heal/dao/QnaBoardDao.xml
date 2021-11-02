@@ -1,9 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.heal.dao.QnaBoardDao"></mapper>
+<mapper namespace="com.heal.dao.QnaBoardDao">
 	
-	<!--  
-	<select id="" resultType="" parameterType="">
-	
+	<!-- public List<QnaBoard> boardList() -->
+	<select id="boardList" resultType="com.heal.dto.QnaBoard">
+		SELECT
+			id, qna_title, qna_date, qna_viewcnt, qna_replycnt
+		FROM
+			qna_board
 	</select>
-	-->
+	
+	<!-- public Map<String, Object> insertBoard(QnaBoard dto) -->
+	<!-- qna_photo #{qnaPhoto} 추가(?) -->
+	<insert id="insertBoard" parameterType="com.heal.dto.QnaBoard">
+		INSERT INTO qna_board (id, qna_title, qna_text, qna_date, qna_editdate, qna_viewcnt, qna_replycnt)
+		VALUES(
+			#{id}
+			, #{qnaTitle}
+			, #{qnaText}
+			, now()
+			, now()
+			, 0
+			, 0
+		)
+	</insert>
+	
+	<!-- List<QnaBoard> updateBoard() -->
+	<!-- qna_photo = #{qnaPhoto} 추가(?) --> 
+	<update id="updateBoard" parameterType="com.heal.dto.QnaBoard">
+		UPDATE qna_board SET
+			qna_title = #{qnaTitle}
+			, qna_text = #{qnaText}		
+			, qna_editdate = now()
+		WHERE
+			qna_no = ${qnaNo}
+	</update>
+	
+	<!-- List<QnaBoard> deleteBoard() -->
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM qna_board
+		WHERE qna_no = #{qnaNo}
+	</delete>
+
+	<!-- public void updateViewCnt(int qnaNo) -->
+	<update id="updateViewCnt" parameterType="com.heal.dto.QnaBoard">
+		UPDATE qna_board SET
+			qna_viewcnt = qna_viewcnt + 1
+		WHERE
+			qna_no = #{qnaNo}
+	</update>
+
+	<!-- mypage / public List<QnaBoard> boardListToId(String id) -->
+	<select id="boardListToId" resultType="com.heal.dto.QnaBoard">
+		SELECT qna_title, qna_date, qna_editdate, qna_viewcnt
+		FROM qna_board 
+		WHERE id = #{id} 
+		ORDER BY qna_editdate
+	</select>
+
+</mapper>

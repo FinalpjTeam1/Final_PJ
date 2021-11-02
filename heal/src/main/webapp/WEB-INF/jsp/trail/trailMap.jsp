@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h3>지도 API 연결 테스트 성공!</h3>
-	<div id="map" style="width:60%;height:700px;"></div>    
+	<div id="kakaomap" style="width:60%;height:700px;"></div>    
 
 
 </body>

@@ -7,56 +7,82 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.heal.dto.QnaBoard;
 import com.heal.dto.Reply;
 import com.heal.service.QnaBoardService;
 
 @Controller
+@RequestMapping("/qnaboard")
 public class QnaBoardController {
 	
 	@Autowired
-	public QnaBoardService qnaBoardService;
+	private QnaBoardService qnaBoardService;
 	
-	/* 로그인 시 접근 가능 */
-	@RequestMapping("/addQnaBoard")
-	public String addQnaBoard(QnaBoard dto, Model model) {
-		int result = qnaBoardService.addQnaBoard(dto);
-		if(result == 1) {
-			model.addAttribute("", "");
-			return "qnaboard/boardDetail";
-		}else {
-			model.addAttribute("", "");
-			return "result";
-		}
-		
+	
+	@RequestMapping("/boardFormView")
+	public String boardForm(Model model, HttpSession session) {
+		return "qnaboard/boardForm";
 	}
 	
-	@RequestMapping("/qnaBoardList")
-	public String qnaBoardList(Model model, HttpSession session) {
-		List<QnaBoard> list = qnaBoardService.qnaBoardList();
-		model.addAttribute("list", list);
+	@RequestMapping("/boardListForm")
+	public String boardListForm(Model model, HttpSession session) {
 		return "qnaboard/boardList";
 	}
 	
-	/* 로그인 시 접근 가능 */
-	@RequestMapping("/qnaBoardDetail")
-	public String qnaBoardDetail(String qnaNo, Model model) {
+	@RequestMapping("/boardDetailForm")
+	public String boardDetailForm(Model model, HttpSession session) {
 		return "qnaboard/boardDetail";
 	}
 	
+	
+	
+	/* 로그인 시 접근 */
+	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
+	public String insertBoard(@ModelAttribute("QnaBoard")QnaBoard qnaBoard, Model model, HttpSession session, RedirectAttributes rttr) {
+		String id = (String)session.getAttribute("id");
+		qnaBoard.setId(id);
+		qnaBoardService.insertBoard(qnaBoard);
+		return "redirect:qnaboard/boardList";
+	}
+	
+	@RequestMapping(value="/boardList", method=RequestMethod.GET)
+	public String boardList(Model model, HttpSession session) {
+		model.addAttribute("boardList", qnaBoardService.boardList());
+		return "qnaboard/boardList";
+	}
+	
+	/* 로그인 시 접근 */
+	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
+	public String boardDetail(@ModelAttribute("qnaNo")int qnaNo, Model model, HttpSession session) {
+		model.addAttribute("boardDetail", qnaBoardService.boardDetail(qnaNo));
+		return "qnaboard/boardDetail";
+	}
+	
+	@RequestMapping(value = "/updateBoard", method = RequestMethod.GET)
+	public String updateBoard(@RequestParam("qnaNo") int qnaNo, @RequestParam("mode") String mode, Model model) {
+		model.addAttribute("boardDetail", qnaBoardService.boardDetail(qnaNo));
+		model.addAttribute("mode", mode);
+		model.addAttribute("qnaBoard", new QnaBoard());
+		return "qnaboard/boardForm";
 
+	}
+	
 	/* 로그인 시 접근 가능 
 	@RequestMapping("")
-	public String updateQnaBoard() {
+	public String updateBoard() {
 		return "qnaboard/";
 	}
 	*/
 	
 	/* 로그인 시 접근 가능
 	@RequestMapping("")
-	public String deleteQnaBoard() {
+	public String deleteBoard() {
 		return "qnaboard/boardList";
 	}
 	 */
@@ -71,21 +97,23 @@ public class QnaBoardController {
 	
 	
 	
-	/* myPage */
+	/* myPage 
 	
 	
-	@RequestMapping("/qnaBoardListToId")
-	public String qnaBoardListToId(Model model, HttpSession session) {
-		List<QnaBoard> list = qnaBoardService.qnaBoardListToId();
+	@RequestMapping("/boardListToId")
+	public String boardListToId(String id, Model model) {
+		List<QnaBoard> list = qnaBoardService.boardListToId(id);
+		model.addAttribute("list", list);
 		return "/myPage/qnaBoard";
 	}
 	
 	@RequestMapping("/replyListToId")
-	public String replyListToId(Model model, HttpSession session) {
-		List<Reply> list = qnaBoardService.replyListToId();
-		return "/myPage/reply";
+	public String replyListToId(String id, Model model) {
+		List<Reply> list = qnaBoardService.replyListToId(id);
+		model.addAttribute("list", list);
+		return "/myPage/qnaBoardReply";
 	}
 	
-	
+	*/
 	
 }

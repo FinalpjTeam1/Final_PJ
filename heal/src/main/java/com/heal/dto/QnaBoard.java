@@ -25,7 +25,16 @@ public class QnaBoard {
     // 첨부 사진 
     private String qnaPhoto;
 
-    // 작성일(YYYY-MM-DD) 
+    // 작성일 
     private String qnaDate;
+    
+    // 수정일
+    private String qnaEditdate;
+    
+    // 조회수
+    private int qnaViewCnt;
+    
+    // 댓글수 
+    private int qnaReplyCnt;
     
 }

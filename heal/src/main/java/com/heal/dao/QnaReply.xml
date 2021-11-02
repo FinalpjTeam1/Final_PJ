@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heal.dao.QnaReply">
+	<!-- 
+	
+	<select id="replyCount" resultType="int">
+        SELECT
+            COUNT(*)
+        FROM qna_reply
+    </select>
+    -->
+    <!--  -->
+	<select id="">
+		SELECT reply_text, reply_date, reply_editdate
+		FROM qna_reply
+		WHERE id=#{id} 
+		ORDER BY reply_editdate
+	</select>
+
+</mapper>
