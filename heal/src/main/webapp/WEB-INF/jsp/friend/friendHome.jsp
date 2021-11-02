@@ -23,9 +23,6 @@
 
 	<!-- CSS -->
 	<link type="text/css" rel="stylesheet" href="/css/juri.css">
-<<<<<<< Updated upstream
-		<link type="text/css" rel="stylesheet" href="../css/juri.css">
-=======
 	
 		<style>
 		h1, h2, h3, h4, h5, h6, p, label{
@@ -47,13 +44,6 @@
 	}
 
 	</script>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 </head>
 <body>
@@ -63,23 +53,6 @@
 			
 			<!-- 내 프로필 부분 -->
 			<div class = "row">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-				<div class="col-md-3 center">
-					<div id="card">
-						  <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" alt="user" style="width:100%">
-						  <br>
-						  <h3 class="center"><b>사용자 닉네임</b></h3>
-						  <p id="profile_title">안녕하세요 혼캠핑 자주 가는 20대 여자입니다~!</p>
-						  <p>연령대 : 20대</p>
-						  <p><a href="myProfile" id="profile_button">프로필 수정</a></p>
-					</div>			
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 					<div class="col-md-3 center">
 						<div id="card">
 							 <!-- 프로필이 비어있을 때 -->
@@ -103,13 +76,6 @@
 							   	<button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">삭제하기</button>
 							</c:if>
 						</div>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   				</div>
   				 <form action="/deleteProfile" method="post" name="deleteForm" id="deleteForm">
   					<input type="hidden" id='id' name="id" value="${profile.id} ">  					
