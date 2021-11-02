@@ -1,7 +1,5 @@
 package com.heal.controller;
 
-<<<<<<< Updated upstream
-=======
 import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -12,11 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> Stashed changes
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< Updated upstream
-=======
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,25 +22,15 @@ import com.heal.dto.Member;
 import com.heal.dto.Profile;
 import com.heal.service.MatchingFriendService;
 
->>>>>>> Stashed changes
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
 public class MatchingFriendController {
-<<<<<<< Updated upstream
-=======
 	
 		/** service 연결 */
 	 	@Autowired
 	 	private MatchingFriendService friendService;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 		/** 친구 찾기 페이지 첫 화면 */
 		@RequestMapping("/friend/friendHome")
@@ -71,14 +57,6 @@ public class MatchingFriendController {
 			return "/friend/myProfile";
 		}
 		
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 		
 		/** 내 프로필 수정 화면*/
 		@RequestMapping("/friend/editProfile")
@@ -204,13 +182,6 @@ public class MatchingFriendController {
 			}	
 		}
 		
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 		/** 친구 리스트 보기 */
 		@RequestMapping("/friend/friendList")
 		public String friendList(HttpSession session, Model model) {
