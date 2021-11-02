@@ -40,9 +40,6 @@ public class MemberService {
 		return dto;
 	}
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	/**
 	 * 
 	 * @param id
@@ -93,11 +90,6 @@ public class MemberService {
 	}
 	
 	
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 	/** 로그인 날짜 갱신
 	 * @param id */
 	public int updateLastLogin(String last, String id) {
@@ -106,6 +98,4 @@ public class MemberService {
 
 
 	
->>>>>>> Stashed changes
-
 }
