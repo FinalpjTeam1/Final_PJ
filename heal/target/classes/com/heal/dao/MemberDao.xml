@@ -29,9 +29,57 @@
 		where id=#{id} and pw=#{pw}
 	</select>
 	
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+	<insert id="insertMember"  parameterType="map">
+	Insert into member(
+	id, pw, nick, mobile, gender, age
+	)	
+	VALUES
+	(
+	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}
+	)
+	
+	</insert>
+	
+	<select id="idCheck" resultType="com.heal.dto.Member">
+	SELECT 
+	*
+	FROM MEMBER
+	WHERE id= #{test00001}
+	</select>
+	
+	<select id="updateMember">
+	UPDATE member
+	SET mobile = #{mobile} , profile = #{profile}
+	WHERE id = #{id}
+	
+	</select>
+	
+		
+	<!-- public void deleteMember(String id, String pw) -->
+	<delete id="deleteMember" parameterType="map">
+		delete from member where id=#{id} and pw=#{pw}  
+	</delete>
+	
+	
+	
+=======
 	<insert id="updateLastLogin" >
        	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
       </insert>
+>>>>>>> Stashed changes
+=======
+	<insert id="updateLastLogin" >
+       	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
+      </insert>
+>>>>>>> Stashed changes
+=======
+	<insert id="updateLastLogin" >
+       	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
+      </insert>
+>>>>>>> Stashed changes
 	
 </mapper>
 

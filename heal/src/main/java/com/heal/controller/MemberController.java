@@ -1,6 +1,7 @@
 package com.heal.controller;
 
 import java.io.PrintWriter;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -89,4 +90,24 @@ public class MemberController {
 		return "/friend/friendHome";
 	}	
 	
+	/** 회원탈퇴 */
+	@RequestMapping("/delete")
+	public String deleteForm() {
+		log.debug("deleteForm Load :: ");
+		return "/member/deleteForm";
+	}
+	
+	@RequestMapping("/deleteDone")
+	public String deleteMember(String id, String pw) {
+		log.debug("deleteMember Load :: ");
+		log.debug(id + ", " + pw);
+		boolean result = memberService.deleteMember(id, pw);
+		if(result == true) {
+			log.debug("deleteMember Success :: ");
+			return "/member/deleteDone";
+		} else {
+			log.debug("deleteMember Fail :: ");
+			return "/member/deleteForm";
+		}
+	}
 }

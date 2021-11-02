@@ -27,4 +27,6 @@ public class Member {
 	//파일 업로드
 	private MultipartFile file;
 
+	private String re_writer;
+	private String member_id;
 }

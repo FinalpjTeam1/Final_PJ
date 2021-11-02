@@ -28,6 +28,9 @@ public interface MemberDao {
 
 
 	public int updateLastLogin(String last, String id);
+	
+	/** 회원 탈퇴 */
+	public void deleteMember(String id, String pw);
 
 
 }

@@ -74,6 +74,25 @@ public class MemberService {
 		memberDao.updateMember(dto);
 		return true;
 	}
+	
+	
+	/**
+	 * delete account
+	 * @param id 아이디
+	 * @param pw 비밀번호
+	 * @return T/F
+	 */
+	public boolean deleteMember(String id, String pw) {
+		if(id != null && pw != null) {			
+			memberDao.deleteMember(id, pw); 
+		} else {
+			log.debug("deleteMember Fail :: memberService");
+			return false;
+		}
+		return true;
+	}
+	
+	
 =======
 =======
 >>>>>>> Stashed changes

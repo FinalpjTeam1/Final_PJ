@@ -56,6 +56,15 @@
 	WHERE id = #{id}
 	
 	</select>
+	
+		
+	<!-- public void deleteMember(String id, String pw) -->
+	<delete id="deleteMember" parameterType="map">
+		delete from member where id=#{id} and pw=#{pw}  
+	</delete>
+	
+	
+	
 =======
 	<insert id="updateLastLogin" >
        	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
