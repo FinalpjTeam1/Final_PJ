@@ -20,15 +20,8 @@ public interface MemberDao {
 	
 	public boolean updateMember(Member dto);
 	
-
 	public int updateLastLogin(String last, String id);
 
-
-	public int updateLastLogin(String last, String id);
-
-
-	public int updateLastLogin(String last, String id);
-	
 	/** 회원 탈퇴 */
 	public void deleteMember(String id, String pw);
 
