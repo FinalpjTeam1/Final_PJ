@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.heal.dto.Member;
 import com.heal.service.MemberService;
-import com.heal.util.FileUploadUtil;
 
 
 @Controller
@@ -49,8 +46,8 @@ public class InfoController {
 		Member login= (Member) session.getAttribute("login");
 		Member vo = memberService.memberSelect(login.getId());
 		if(dto.getProfile() != null) {
-			String profile = FileUploadUtil.fileUpload(dto.getFile(), request, "member");
-			dto.setProfile(profile);
+	//		String profile = FileUploadUtil.fileUpload(dto.getFile(), request, "member");
+	//		dto.setProfile(profile);
 		}else {
 			mav.setViewName("/member/Update");
 			return mav;

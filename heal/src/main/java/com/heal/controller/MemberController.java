@@ -28,9 +28,15 @@ public class MemberController {
 	public MemberService memberService;
 	
 	/** 로그인 화면으로 이동 */
-	@RequestMapping("/member/loginForm")
+//	@RequestMapping("/member/loginForm")
+//	public String loginForm() {
+//		return "/member/loginForm";
+//	}
+	
+	/** 로그인 화면으로 이동 */
+	@RequestMapping("/loginForm")
 	public String loginForm() {
-		return "/member/loginForm";
+		return "/user/login";
 	}
 	
 	/**로그인 */
@@ -61,7 +67,7 @@ public class MemberController {
 				return "redirect:/";
 			} else {
 				log.debug("login user Success :: ");
-				return "redirect:/index";
+				return "redirect:/";
 			}
 		} else {
 			//로그인 실패시 
@@ -76,6 +82,7 @@ public class MemberController {
 			return "/user/login";
 		}
 	}	
+	
 		
 	/** 로그아웃 */
 	@RequestMapping("/logout")
@@ -83,13 +90,7 @@ public class MemberController {
 		session.invalidate();
 	   return "redirect:/";
 	}
-	
-	/** 회원가입 */
-	@RequestMapping("/join")
-	public String join() {
-		return "/friend/friendHome";
-	}	
-	
+
 	/** 회원탈퇴 */
 	@RequestMapping("/delete")
 	public String deleteForm() {
