@@ -47,6 +47,9 @@
 	}
 
 	</script>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 </head>
@@ -58,6 +61,7 @@
 			<!-- 내 프로필 부분 -->
 			<div class = "row">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 				<div class="col-md-3 center">
 					<div id="card">
 						  <img src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg" alt="user" style="width:100%">
@@ -68,6 +72,8 @@
 						  <p><a href="myProfile" id="profile_button">프로필 수정</a></p>
 					</div>			
 =======
+=======
+>>>>>>> Stashed changes
 					<div class="col-md-3 center">
 						<div id="card">
 							 <!-- 프로필이 비어있을 때 -->
@@ -91,6 +97,9 @@
 							   	<button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">삭제하기</button>
 							</c:if>
 						</div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   				</div>
   				 <form action="/deleteProfile" method="post" name="deleteForm" id="deleteForm">

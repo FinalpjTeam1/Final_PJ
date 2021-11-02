@@ -24,4 +24,7 @@ public interface MemberDao {
 	public int updateLastLogin(String last, String id);
 
 
+	public int updateLastLogin(String last, String id);
+
+
 }

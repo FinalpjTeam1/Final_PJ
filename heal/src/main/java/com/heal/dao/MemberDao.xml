@@ -30,6 +30,7 @@
 	</select>
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	<insert id="insertMember"  parameterType="map">
 	Insert into member(
 	id, pw, nick, mobile, gender, age
@@ -54,6 +55,11 @@
 	WHERE id = #{id}
 	
 	</select>
+=======
+	<insert id="updateLastLogin" >
+       	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
+      </insert>
+>>>>>>> Stashed changes
 =======
 	<insert id="updateLastLogin" >
        	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}

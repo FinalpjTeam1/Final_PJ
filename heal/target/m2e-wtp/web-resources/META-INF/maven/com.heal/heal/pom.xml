@@ -135,6 +135,9 @@
       <artifactId>jquery</artifactId>
       <version>3.1.0</version>
     </dependency>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 	</dependencies>

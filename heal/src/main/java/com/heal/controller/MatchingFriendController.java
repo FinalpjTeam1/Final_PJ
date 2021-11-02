@@ -38,6 +38,9 @@ public class MatchingFriendController {
 		/** service 연결 */
 	 	@Autowired
 	 	private MatchingFriendService friendService;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 		/** 친구 찾기 페이지 첫 화면 */
@@ -66,7 +69,10 @@ public class MatchingFriendController {
 		}
 		
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 		
 		/** 내 프로필 수정 화면*/
 		@RequestMapping("/friend/editProfile")
@@ -192,6 +198,9 @@ public class MatchingFriendController {
 			}	
 		}
 		
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		/** 친구 리스트 보기 */
 		@RequestMapping("/friend/friendList")
