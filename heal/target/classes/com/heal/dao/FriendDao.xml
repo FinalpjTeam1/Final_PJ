@@ -81,8 +81,7 @@
        </select>
        
        <insert id="updateProfile"  parameterType="com.heal.dto.Profile">
-        update set profile  intro=#{intro}, interest=#{interest}, nick=#{nick}, 
-        age=#{age},fileName=#{fileName},fileOriName= #{fileOriName},fileUrl=#{fileUrl}
+        update  profile set intro=#{intro}, interest=#{interest}, fileName=#{fileName},fileOriName= #{fileOriName},fileUrl=#{fileUrl}
 		where id=#{id}
        </insert>
 </mapper>
