@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="taglib.jsp" %>
 <!DOCTYPE html>
 
 	<!-- Preloader -->
@@ -46,14 +47,27 @@
                                   <nav>               
                                       <ul id="navigation">                                                                                                                                     
                                             <li><a href="../index.jsp">Home</a></li>
-                                            <li><a href="#">Map</a>
+                                            <li><a href="#" onclick="return false;">Map</a>
                                                 <ul class="submenu">
-                                                    <li><a href="../trail/sidoMap.jsp">sidoMap</a></li>
-                                                    <li><a href="../trail/trailMap.jsp">trailMap</a></li>
+                                                    <li><a href="../trail/sidoMap">sidoMap</a></li>
+                                                    <li><a href="../trail/trailMap">등산로</a></li>
+                                                    <li><a href="../camp/list">캠핑장</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="boardList.jsp">boardList</a></li>
-                                        </ul>
+                                            <li><a href="/friend/friendHome">친구 찾기</a></li>
+                                            <li><a href="/qnaboard/boardList"> Q & A </a></li>
+                                            <li><a href="/review/list">리뷰 게시판</a></li>
+                                            <li><a href="#" onclick="return false;"></a></li>
+                                            <c:choose>
+												<c:when test="${(empty memberId && empty grade) || empty dto}">
+													<li><a href="/loginForm">Login</a></li>
+													<li><a href="/member/joinPolicy">Join</a></li>
+												</c:when>
+												<c:when test="${(not empty memberId && not empty grade) || not empty dto}">
+													<li><a href="/logout">Logout</a></li>
+												</c:when>
+											</c:choose>
+                                       </ul>
                                   </nav>
                               </div>
                           </div>
