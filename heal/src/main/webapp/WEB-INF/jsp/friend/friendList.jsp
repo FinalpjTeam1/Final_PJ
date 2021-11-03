@@ -182,8 +182,17 @@
 	  padding-bottom: 0;
 	}
 	</style>
+	
+	<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
 </head>
 <body>
+
+
+   <header>
+<jsp:include page="../inc/header.jsp" />
+</header>
+
 <section>
 		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
 				<div class="row">

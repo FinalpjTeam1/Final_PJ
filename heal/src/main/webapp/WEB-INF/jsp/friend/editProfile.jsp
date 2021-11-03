@@ -37,6 +37,10 @@
 				reader.onload = function(event) { 
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result); 
+					
+					img.style.width="300";
+					img.style.height="300";
+					
 					document.querySelector("div#image_container").appendChild(img); 
 					}; 
 					reader.readAsDataURL(event.target.files[0]); 
@@ -89,15 +93,7 @@
 			}
 			
 			//(2) 관심사 
-			var objWrite3 = document.getElementsByName("interest");
-			
-			for(var i=0;i<objWrite3.length;i++){
-				    if(objWrite3[i].checked == false){
-				        alert("[안내] 관심사를 선택해주세요.");
-				        return false;
-				    }
-				    $('#EditForm').submit();
-			}    
+  
 		}
 		
 	</script>
@@ -122,6 +118,8 @@
 	    }
 	</style>	
 
+<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
 </head>
 <body>
 
@@ -130,7 +128,7 @@
 			<div class="page-wrapper bg-dark p-t-100 p-b-50">
 			        <div class="wrapper wrapper--w900">   
 			        <!-- 폼 처음 -->
-			        <form name = "EditForm" id="EditForm" action="/saveProfile" method="post"  enctype="multipart/form-data">
+			        <form name = "EditForm" id="EditForm" action="/editProfile" method="post"  enctype="multipart/form-data">
 			            <div class="card card-6">
 			                <div class="card-heading">
 			                    <h2 class="title" >프로필 수정</h2>

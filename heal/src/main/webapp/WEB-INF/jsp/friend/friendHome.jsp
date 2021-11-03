@@ -1,42 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="../inc/taglib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="EUC-KR">
+        <meta charset="utf-8">
+       <meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="shortcut icon" type="image/x-icon" href="../resources/assets/img/favicon.ico">
+
+	
+        
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Ä£±¸ Ã£±â | Hi-Camper</title>
+	<title>ì¹œêµ¬ ì°¾ê¸° | Hi-Camper</title>
 	<!-- Bootstrap core JS-->
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-      <!-- ÇÕÃÄÁö°í ÃÖ¼ÒÈ­µÈ ÃÖ½Å CSS -->
+      <!-- í•©ì³ì§€ê³  ìµœì†Œí™”ëœ ìµœì‹  CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<!-- ÇÕÃÄÁö°í ÃÖ¼ÒÈ­µÈ ÃÖ½Å ÀÚ¹Ù½ºÅ©¸³Æ® -->
+	<!-- í•©ì³ì§€ê³  ìµœì†Œí™”ëœ ìµœì‹  ìžë°”ìŠ¤í¬ë¦½íŠ¸ -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 		 <!-- Google Font -->
 	 <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="preconnect" href="https://fonts.gstatic.com" >
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-	
 
-	<!-- CSS -->
-	<link type="text/css" rel="stylesheet" href="/css/juri.css">
 	
-		<style>
-		h1, h2, h3, h4, h5, h6, p, label{
-	     font-family: 'Nanum Gothic', sans-serif; !important;
-	    }
-	    </style>
-	    
 		<script>
 	
 		function profileDelete() {
-		var cancel = confirm("[¾È³»] ÇÁ·ÎÇÊÀ» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+		var cancel = confirm("[ì•ˆë‚´] í”„ë¡œí•„ì„ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 		
 		if(cancel == true){		
-			alert('[¾È³»] »èÁ¦ µÇ¾ú½À´Ï´Ù.');
+			alert('[ì•ˆë‚´] ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤.');
 	    	$('#deleteForm').submit();
 		}else{
 			return false;
@@ -44,101 +40,117 @@
 	}
 
 	</script>
-
+	<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
+<link type="text/css" rel="stylesheet" href="/css/juri.css">
+		<style>
+		h1, h2, h3, h4, h5, h6, p, label{
+	     font-family: 'Nanum Gothic', sans-serif; !important;
+	    } 
+	    </style>
+	    
 </head>
 <body>
 
+   <header>
+<jsp:include page="../inc/header.jsp" />
+</header>
+
 	<section>
-		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black;">
+		<div class="container-fluid " style=" height:50%; width:80%; border : 1px solid black;">
 			
-			<!-- ³» ÇÁ·ÎÇÊ ºÎºÐ -->
+			<!-- ë‚´ í”„ë¡œí•„ ë¶€ë¶„ -->
 			<div class = "row">
 					<div class="col-md-3 center">
 						<div id="card">
-							 <!-- ÇÁ·ÎÇÊÀÌ ºñ¾îÀÖÀ» ¶§ -->
+							 <!-- í”„ë¡œí•„ì´ ë¹„ì–´ìžˆì„ ë•Œ -->
 							  <c:if test="${empty profile}">
 								  <img src="/img/none.png" alt="user" style="width:100%">
 								  <br>
-								  <h3 class="center"><b>ÀÌ¸§¾øÀ½</b></h3>
+								  <h3 class="center"><b>ì´ë¦„ì—†ìŒ</b></h3>
 								  <p id="profile_title"></p>
 								  <p></p>
 								  <span class="tag"></span>
-								  <p><a href="myProfile" id="profile_button">ÇÁ·ÎÇÊ Ãß°¡</a></p>
+								  <p><a href="myProfile" id="profile_button">í”„ë¡œí•„ ì¶”ê°€</a></p>
 							</c:if>
 							<c:if test="${!empty profile}">
 							  <img src="/profile/${profile.fileName} " alt="user" style="width:100%">
 								  <br>
-								  <h3 class="center"><b>${profile.nick} </b></h3>
+								  <h3 class="center" style="font-size: large; !important"><b>${profile.nick} </b></h3>
 								  <p id="profile_title">${profile.age}</p>
 								  <p>${profile.intro}</p>
 								  <span class="tag">${profile.interest} </span>
-								  <p><a href="/friend/editProfile" id="profile_button">ÇÁ·ÎÇÊ ¼öÁ¤</a></p>
-							   	<button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">»èÁ¦ÇÏ±â</button>
+								  <p><a href="/friend/editProfile" id="profile_button">í”„ë¡œí•„ ìˆ˜ì •</a></p>
+							   	<button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">ì‚­ì œí•˜ê¸°</button>
 							</c:if>
 						</div>
   				</div>
   				 <form action="/deleteProfile" method="post" name="deleteForm" id="deleteForm">
   					<input type="hidden" id='id' name="id" value="${profile.id} ">  					
   				</form>
-  			<!-- ³» ÇÁ·ÎÇÊ ºÎºÐ ³¡  -->	
+  			<!-- ë‚´ í”„ë¡œí•„ ë¶€ë¶„ ë  -->	
   			
-  				<div class="col-md-4 " style="height: 200px">
-  				<h3 class="text-center"><b>Ä£±¸ ¸ñ·Ï</b><hr></h3>
+  				<div class="col-md-4 " style=" height:300px; border:1px solid red;" >
+  				<h3 class="text-center"><b>ì¹œêµ¬ ëª©ë¡</b><hr></h3>
 		  				
 		  				<c:if test="${empty friendProfile }">
-		  				<h5 class="center" style="margin-top:20%;">Ä£±¸ Ãß°¡ÇÑ ³»¿ªÀÌ ¾ø½À´Ï´Ù.</h5>
+		  				<h5 class="center" style="margin-top:20%;">ì¹œêµ¬ ì¶”ê°€í•œ ë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</h5>
 		  				</c:if>
 		  				
 		  				<c:if test="${!empty friendProfile}">
 				   			 <table class="table table-striped custab">
 								    <thead>
 									        <tr>
-									            <th>´Ð³×ÀÓ</th>
-									            <th>¿¬·É´ë</th>
-									            <th class="text-center">°ü¸®</th>
+									            <th>ë‹‰ë„¤ìž„</th>
+									            <th>ì—°ë ¹ëŒ€</th>
+									            <th class="text-center">ê´€ë¦¬</th>
 									        </tr>
 								    </thead>
 								<c:forEach var="list" items="${friendProfile}" varStatus="status"> 
 								            <tr>
-									                <td>${list.nick }</td>
+									                <td >${list.nick }</td>
 									                <td>${list.age }</td>
 									                <td class="text-center">
-										                <a class='btn btn-info btn-xs' href="/friend/friendDetail?id=${list.id }"><span class="glyphicon glyphicon-zoom-in"></span>ÀÚ¼¼È÷</a> 
-										                <a href="/friend/friendDelete?id=${list.id }" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>»èÁ¦</a>
+										                <a class='btn btn-info btn-xs' href="/friend/friendDetail?id=${list.id }"><span class="glyphicon glyphicon-zoom-in"></span>ìžì„¸ížˆ</a> 
+										                <a href="/friend/friendDelete?id=${list.id }" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>ì‚­ì œ</a>
 									                </td>
 								            </tr>
 								   </c:forEach>
 								   		<tr>
 									                <td colspan="3" class="text-center">
-									                <a href="/friend/friendList" type="button"  class="btn" id="profile_button"> Ä£±¸ ÀüÃ¼ º¸±â</a>      	
+									                <a href="/friend/friendList" type="button"  class="btn" id="profile_button"> ì¹œêµ¬ ì „ì²´ ë³´ê¸°</a>      	
 									                </td>
 									  </tr>
 							 </table>
 						</c:if>	 
   				</div>
-  					<div class="col-md-5 center" >
-	  					<h3 class="center"> <b>* Ä£±¸ Ã£±â ¾È³» »çÇ× *</b><hr></h3>
-	  					<h5 class="center">1. Å¸ÀÎÀÇ »çÁøÀ» µµ¿ëÇÏÁö ¸¶¼¼¿ä. </h5>
-	  					<h5 class="center">2. ¿å¼³ / ½Î¿ò / »ó´ë¹æÀ» ºÒÄèÇÏ°Ô ¸¸µå´Â ¾ðÇà  µîÀ¸·Î <br> ÀæÀº ½Å°í Á¢¼ö½Ã ÇØ´ç ¼­ºñ½º¸¦ ÀÌ¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.</h5>
-	  					<h5 class="center">3. °³ÀÎ Á¤º¸, »ç»ýÈ°À» Áö³ªÄ¡°Ô ¹¯°Å³ª °ø°³ÇÏ´Â °ÍÀ» Áö¾çÇØÁÖ¼¼¿ä.</h5>
+  					<div class="col-md-5 center"style=" height:30%;" >
+			  					<h3 class="center" > <b>* ì¹œêµ¬ ì°¾ê¸° ì•ˆë‚´ ì‚¬í•­ *</b><hr></h3>
+			  					<h5 class="center">1. íƒ€ì¸ì˜ ì‚¬ì§„ì„ ë„ìš©í•˜ì§€ ë§ˆì„¸ìš”. </h5>
+			  					<h5 class="center">2. ìš•ì„¤ / ì‹¸ì›€ / ìƒëŒ€ë°©ì„ ë¶ˆì¾Œí•˜ê²Œ ë§Œë“œëŠ” ì–¸í–‰  ë“±ìœ¼ë¡œ <br> ìž¦ì€ ì‹ ê³  ì ‘ìˆ˜ì‹œ í•´ë‹¹ ì„œë¹„ìŠ¤ë¥¼ ì´ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.</h5>
+			  					<h5 class="center">3. ê°œì¸ ì •ë³´, ì‚¬ìƒí™œì„ ì§€ë‚˜ì¹˜ê²Œ ë¬»ê±°ë‚˜ ê³µê°œí•˜ëŠ” ê²ƒì„ ì§€ì–‘í•´ì£¼ì„¸ìš”.</h5><hr>
+			  					
+			  				<div style=" cursor: pointer;" onclick="location.href='/friend/findFriend'">
+			    				<div class="page"> 
+								  <button class="fun-btn center" style="margin-top:-5%; width:300px; height:100px;"><h3><b style="color:white;">ì¹œêµ¬ ì°¾ê¸°</b></h3></button>
+								</div>				
+			  				</div>	
   					</div>
-  				
-  				<div class="col-md-5 center" style=" cursor: pointer; border:1px solid red;" onclick="location.href='/friend/findFriend'">
-    				<div class="page">
-					  <button class="fun-btn">Ä£±¸ Ã£±â</button>
-					</div>				
-  				</div>
-  				
-  				<div class="col-md-10 center" style="background-color: gray; width: 800px; height: 300px;" >
+  					
+  		<!-- 		<div class="col-md-10 center" style="background-color: gray; width: 800px; height: 300px;" >
   					<div > 
-  					<h2 class="center">Ã¤ÆÃ¹æ ºÎºÐ</h2>   					
+  					<h2 class="center">ì±„íŒ…ë°© ë¶€ë¶„</h2>   					
   					</div>
-  				</div>
+  				</div> -->
 			</div>
 		</div>
 		
 				<div style="margin-top: 20%">
 			</div>
 	</section>
+	
+	<!-- footer & js -->
+<jsp:include page="../inc/footer.jsp" />
+<jsp:include page="../inc/js.jsp" />
 </body>
 </html>

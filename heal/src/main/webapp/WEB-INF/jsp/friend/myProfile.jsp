@@ -30,13 +30,25 @@
 			pathpoint = obj.value.lastIndexOf('.');
 			filepoint = obj.value.substring(pathpoint+1,obj.length);
 			filetype = filepoint.toLowerCase();	
+
+			var div_height = 300;
+			var div_width = 300;
+			
 			
 			if(filetype=='jpg' || filetype=='gif' || filetype=='png' || filetype=='jpeg' ) {
 				// 정상적인 이미지 확장자 파일인 경우
 				var reader = new FileReader(); 
 				reader.onload = function(event) { 
+					
 					var img = document.createElement("img"); 
 					img.setAttribute("src", event.target.result); 
+					
+					var img_height = img.width;
+					var img_width= img.height;
+					
+					img_height=div_height;
+					img_width=div_width;
+					
 					document.querySelector("div#image_container").appendChild(img); 
 					}; 
 					reader.readAsDataURL(event.target.files[0]); 
@@ -128,12 +140,82 @@
 	</style>	
 
 </head>
+
+	<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
 <body>
 
+<header>
+     <div class="header-area">
+          <div class="main-header ">
+              <div class="header-top top-bg d-none d-lg-block">
+                 <div class="container">
+                  <div class="row justify-content-between align-items-center">
+                      <div class="col-lg-8">
+                          <div class="header-info-left">
+                              <ul>                          
+                                  <li>https://github.com/FinalpjTeam1/Final_PJ</li>
+                              </ul>
+                          </div>
+                      </div>
+                   </div>
+                 </div>
+              </div>
+             <div class="header-bottom  header-sticky">
+                  <div class="container">
+                      <div class="row align-items-center">
+                          <!-- Logo -->
+                          <div class="col-xl-2 col-lg-2 col-md-1">
+                              <div class="logo">
+                                <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                              </div>
+                          </div>
+                          <div class="col-xl-10 col-lg-10 col-md-10">
+                              <!-- Main-menu -->
+                              <div class="main-menu f-right d-none d-lg-block">
+                                  <nav>               
+                                      <ul id="navigation">                                                                                                                                     
+                                            <li><a href="../index.jsp">Home</a></li>
+                                            <li><a href="#" onclick="return false;">Map</a>
+                                                <ul class="submenu">
+                                                    <li><a href="../trail/sidoMap">sidoMap</a></li>
+                                                    <li><a href="../trail/trailMap">등산로</a></li>
+                                                    <li><a href="../camp/list">캠핑장</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/friend/friendHome">친구 찾기</a></li>
+                                            <li><a href="/qnaboard/boardList"> Q & A </a></li>
+                                            <li><a href="/review/list">리뷰 게시판</a></li>
+                                            <li><a href="#" onclick="return false;"></a></li>
+                                            <c:choose>
+												<c:when test="${(empty memberId && empty grade) || empty dto}">
+													<li><a href="/loginForm">Login</a></li>
+													<li><a href="/member/joinPolicy">Join</a></li>
+												</c:when>
+												<c:when test="${(not empty memberId && not empty grade) || not empty dto}">
+													<li><a href="/logout">Logout</a></li>
+												</c:when>
+											</c:choose>
+                                       </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                          <!-- Mobile Menu -->
+                          <div class="col-12">
+                              <div class="mobile_menu d-block d-lg-none"></div>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+          </div>
+     </div>
+      <!-- Header End -->
+  </header>
+
 <section>
-		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; ">
-			<div class="page-wrapper bg-dark p-t-100 p-b-50">
-			        <div class="wrapper wrapper--w900">   
+		<div class="container-fluid " style=" height:50%; width:80%;" >
+			<div class="page-wrapper bg-dark p-t-100 p-b-50"  >
+			        <div class="wrapper wrapper--w900" >   
 			        <!-- 폼 처음 -->
 			        <form name = "profileForm" id="profileForm" action="/saveProfile" method="post"  enctype="multipart/form-data" >
 			              <div class="card card-6">
@@ -151,7 +233,7 @@
 			                        
 			                        <div class="form-row">
 			                            <div class="name">관심사</div>
-				                        	 <div class="value" style="width:600px; height: 100px;">
+				                        	 <div class="value" style="width:600px; height: 100px; margin-bottom: 5%;">
 												 <!-- 처음 -->
 											  <label class="x-large side" ><input type="checkbox" onclick="count_ck(this)" name="interest" value="캠핑">캠핑</label>
 										      <label class="x-large side"><input type="checkbox" onclick="count_ck(this)" name="interest" value="등산"> 등산</label>
@@ -166,11 +248,11 @@
   									    	 <label class="x-large side" style="margin-left:4%"><input type="checkbox" onclick="count_ck(this)" name="interest" value="맛집">맛집</label>
 										      <label class="x-large side"style="margin-left:2.5%"><input type="checkbox" onclick="count_ck(this)" name="interest" value="반려동물과함께">반려동물과함께</label>		
   												<!-- 끝 -->
-  												<div class="label--desc" style="margin-bottom: 50px;">최대 5개까지 선택 가능합니다.</div>		
+  												<div class="label--desc" >최대 5개까지 선택 가능합니다.</div>		
 
 											</div>			
 			                        </div>
-			                        <div class="form-row">
+			                        <div class="form-row"  style="margin-top: 2%;">
 			                            <div class="name">프로필 사진 등록</div>
 			                            <div class="value">
 			                                <div class="input-group js-input-file">
@@ -178,13 +260,12 @@
 
 			                                </div>
 			                                <div class="label--desc">얼굴이 선명하게 나온 사진을 올려주세요. 파일의 최대 크기는 15mb입니다.</div>
-			                            	<div id="image_container" ></div>
-			                            	
-			                            </div>
+			                           		 	<div id="image_container" ></div>   	
+			                         	   </div>
 			                        </div>
 			                </div>
 			                <div class="card-footer">
-			                    <button class="btn btn--radius-2 btn--blue-2" onclick="formCheck();" style="margin-left: 35%">등록하기</button>	                 
+			                    <button class="btn btn--radius-2 btn--blue-2" onclick="formCheck();" style="margin-left: 40%">등록하기</button>	                 
 			                </div>
 			            </div>
 			            </form>

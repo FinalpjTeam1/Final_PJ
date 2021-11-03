@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ include file="../inc/taglib.jsp" %>
     
 <!DOCTYPE html>
 <html>
@@ -23,6 +23,8 @@
 	
 
 	<!-- CSS -->
+		    	<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
 	<link type="text/css" rel="stylesheet" href="/css/juri.css">
 	
 		<style>
@@ -186,12 +188,81 @@
 			}
 		}
 	    </script>
+	    
 </head>
 <body>
+
+<header>
+     <div class="header-area">
+          <div class="main-header ">
+              <div class="header-top top-bg d-none d-lg-block">
+                 <div class="container">
+                  <div class="row justify-content-between align-items-center">
+                      <div class="col-lg-8">
+                          <div class="header-info-left">
+                              <ul>                          
+                                  <li>https://github.com/FinalpjTeam1/Final_PJ</li>
+                              </ul>
+                          </div>
+                      </div>
+                   </div>
+                 </div>
+              </div>
+             <div class="header-bottom  header-sticky">
+                  <div class="container">
+                      <div class="row align-items-center">
+                          <!-- Logo -->
+                          <div class="col-xl-2 col-lg-2 col-md-1">
+                              <div class="logo">
+                                <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                              </div>
+                          </div>
+                          <div class="col-xl-10 col-lg-10 col-md-10">
+                              <!-- Main-menu -->
+                              <div class="main-menu f-right d-none d-lg-block">
+                                  <nav>               
+                                      <ul id="navigation">                                                                                                                                     
+                                            <li><a href="../index.jsp">Home</a></li>
+                                            <li><a href="#" onclick="return false;">Map</a>
+                                                <ul class="submenu">
+                                                    <li><a href="../trail/sidoMap">sidoMap</a></li>
+                                                    <li><a href="../trail/trailMap">등산로</a></li>
+                                                    <li><a href="../camp/list">캠핑장</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="/friend/friendHome">친구 찾기</a></li>
+                                            <li><a href="/qnaboard/boardList"> Q & A </a></li>
+                                            <li><a href="/review/list">리뷰 게시판</a></li>
+                                            <li><a href="#" onclick="return false;"></a></li>
+                                            <c:choose>
+												<c:when test="${(empty memberId && empty grade) || empty dto}">
+													<li><a href="/loginForm">Login</a></li>
+													<li><a href="/member/joinPolicy">Join</a></li>
+												</c:when>
+												<c:when test="${(not empty memberId && not empty grade) || not empty dto}">
+													<li><a href="/logout">Logout</a></li>
+												</c:when>
+											</c:choose>
+                                       </ul>
+                                  </nav>
+                              </div>
+                          </div>
+                          <!-- Mobile Menu -->
+                          <div class="col-12">
+                              <div class="mobile_menu d-block d-lg-none"></div>
+                          </div>
+                      </div>
+                  </div>
+             </div>
+          </div>
+     </div>
+      <!-- Header End -->
+  </header>
+
 	<section>
-		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; border : 1px solid black; padding-bottom: 5%">
+		<div class="container-fluid " style=" height:50%; width:80%; border : 1px solid black; padding-bottom: 5%">
 			
-				<h2 class="center" style="margin-bottom: 10%"><b>${id } 님에게 잘 어울릴 것 같은 친구를 추천해드릴게요!</b><hr></h2>
+				<h2 class="center" style="margin-top:2%; margin-bottom: 10%; text-align: center; !important"><b>${id } 님에게 잘 어울릴 것 같은 친구를 추천해드릴게요</b><hr></h2>
 				
 				<!-- 프로필 컨텐츠가 없거나, 추천 친구가 없을 때  -->
 				<c:if test="${empty profile }">
@@ -200,7 +271,7 @@
 				<div class = "row">
 						<!-- 추천 친구 있음 -->
 						<c:if test="${!empty profile }">
-						<h3 class ="center" style="margin-top:-5%; margin-bottom: 5%">${id } 님에게 잘 어울릴 것 같은 친구로 하이캠퍼가 뽑아봤어요! &#128522; </h3>
+						<h3  style="margin-top:-5%; margin-bottom: 5%; text-align: center;">${id } 님에게 잘 어울릴 것 같은 친구로 하이캠퍼가 뽑아봤어요! &#128522; </h3>
 						</c:if>
 						<!-- 카드 콘텐츠 : 같은 연령대 추천-->				
 						<c:if test="${!empty sameAge }">
