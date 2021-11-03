@@ -53,6 +53,7 @@
 	              <div class="col-xl-5 col-lg-5 col-md-5">
 	                    <!-- social -->
 	                    <div class="footer-social f-right">
+	                    <a href="/delete" style="color:white">회원 탈퇴</a>
 	                        <a href="https://github.com/FinalpjTeam1/Final_PJ"><i class="fab fa-github"></i></a>
 	                    </div>
 	             </div>

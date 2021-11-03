@@ -27,6 +27,11 @@ public class ReviewService {
 		return reviewDao.reviewList();
 	}
 
+	/** 게시글 좋아요 순으로 조회 */
+	public ArrayList<Review> reviewLikeList() {
+		return reviewDao.reviewLikeList();
+	}
+	
 	/** 게시글 상세조회 */
 	public Review findReviewDetail(int re_no) {
 		return reviewDao.selectReviewDetail(re_no);
@@ -58,9 +63,9 @@ public class ReviewService {
 	}
 
 	/** 좋아요 추가 */
-	public int updateReviewLike(int re_no) {
+	public int updateReviewLike(Review dto) {
 		//dto.setRe_date(Utility.getCurrentDate());
-		int result = reviewDao.updateReviewLike(re_no);
+		int result = reviewDao.updateReviewLike(dto);
 		log.debug("dao result: " + result);
 		return result;
 	}

@@ -18,6 +18,8 @@ public interface ReviewDao {
 	/** 게시판 전체조회 */
 	public ArrayList<Review> reviewList();
 	
+	public ArrayList<Review> reviewLikeList();
+	
 	/** 게시글 세부조회 */
 	public Review selectReviewDetail(int re_no);
 	
@@ -31,7 +33,7 @@ public interface ReviewDao {
 	public int deleteReview (int re_no);
 
 	/** 좋아요 추가 */
-	public int updateReviewLike (int re_no);
+	public int updateReviewLike (Review dto);
 	
 	/** 좋아요 취소 */
 	public int cancelReviewLike (int re_no);

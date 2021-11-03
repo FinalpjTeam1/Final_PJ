@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.heal.dto.Like;
@@ -39,6 +41,19 @@ public class ReviewController {
 		model.addAttribute("review", review);
 		
 		return "review/list";
+	}
+	
+	
+	/** 목록 페이지 좋아요 순 */
+	@RequestMapping("/review/list/like")
+	public String ReviewLikeList(Model model) {
+		log.info("### ReviewMember List :: ");
+		
+		ArrayList<Review> review = reviewService.reviewLikeList();
+		
+		model.addAttribute("review", review);
+		
+		return "redirect:/review/list";
 	}
 	
 	/** 게시글 상세조회 화면  */
@@ -114,7 +129,7 @@ public class ReviewController {
 
     /** 게시글 작성 */
 	@RequestMapping("/review/formDone")
-	public String ReviewWrite(Review dto, Model model) {
+	public String ReviewWrite(Review dto, Model model, @RequestPart(value="re_img") MultipartFile files) {
 		log.info("### Review Write :: ");
 		log.debug("###" + dto);
 		
@@ -135,7 +150,38 @@ public class ReviewController {
 				model.addAttribute("message", "작성 실패");
 				return "review/list";
 			}
+	}
 	
+	/** 좋아요 추가 */
+	@RequestMapping("/review/like{re_no}")
+	public String Like(@PathVariable("re_no") int re_no,Review dto, Model model) {
+		int result = reviewService.updateReviewLike(dto);
+		
+		System.out.println("#### dto :: " + dto);
+		
+		if (result == 1) {
+			return "redirect:/review/detail?re_no={re_no}";
+		} else {
+			model.addAttribute("message", "로그인 필요");
+			return "/login";
+		}
+	}
 	
+	/** 좋아요 취소 */
+	@RequestMapping("/review/dislike{re_no}")
+	public String DisLike(@PathVariable("re_no") int re_no, Review dto, Model model) {
+		int result = reviewService.cancelReviewLike(re_no);
+		int no = dto.getRe_no();
+		dto.setRe_no(no);
+		System.out.println("#### no :: " + no);
+		
+		System.out.println("#### dto :: " + dto);
+		
+		if (result == 1) {
+			return "redirect:/review/detail?re_no={re_no}";
+		} else {
+			model.addAttribute("message", "로그인 필요");
+			return "/login";
+		}
 	}
 }

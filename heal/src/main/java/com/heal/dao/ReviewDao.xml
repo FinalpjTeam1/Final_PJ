@@ -22,6 +22,12 @@
 		select * from review order by re_no desc
 	</select>
 	
+	<!-- 게시판 조회 좋아요순 	
+		public ArrayList<Review> reviewLikeList() -->
+	<select id="reviewLikeList" resultMap="reviewList">
+		select * from review order by re_like desc
+	</select>
+	
 	<!-- 게시글 본문 조회 
 	public Find selectReviewDetail(String re_no); -->
 	<select id="selectReviewDetail" resultMap="reviewList">

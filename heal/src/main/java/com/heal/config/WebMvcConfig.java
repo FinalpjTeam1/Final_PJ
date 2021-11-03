@@ -36,7 +36,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		//.excludePathPatterns("/resource/**");
 		
 		// 2. needToLoginInterceptor : 로그인이 필요한 맵핑 주소를 적어주세요~! 
-		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/friend/friendHome");
+		registry.addInterceptor(needToLoginInterceptor).addPathPatterns("/friend/friendHome").addPathPatterns("/review/form");
 		
 		// 3. needToLogoutInterceptor : 로그인상태에서는 사용해서는 안되는 맵핑 주소를 적어주세요~! (예) 로그인)
 		registry.addInterceptor(needToLogoutInterceptor)

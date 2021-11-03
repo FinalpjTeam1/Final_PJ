@@ -28,4 +28,9 @@
  	
  	private String re_like;
  	
+ 	private String id;
+ 	
+ 	private String member_id;
+ 	
+ 	private String like_check;
  }
