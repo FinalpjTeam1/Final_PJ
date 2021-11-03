@@ -63,47 +63,47 @@
             </div>
         </div>
         <!-- slider Area End-->
-        <!-- Our Services Start -->
+     <!-- Our Services Start -->
         <div class="our-services servic-padding">
             <div class="container">
                 <div class="row d-flex justify-contnet-center">
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class="flaticon-tour"></span>
+                              <i class="fas fa-mountain fa-4x"></i>
                             </div>
                             <div class="services-cap">
-                                <h5>8000+ Our Local<br>Guides</h5>
+                                <h5 style="margin-top:20%;">전국의 인기있는 산들만 모은<br>2900여개의 추천 등산로를<br> 확인해보세요</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class="flaticon-pay"></span>
+                                <i class="fas fa-question-circle  fa-4x"></i>
                             </div>
                             <div class="services-cap">
-                                <h5>100% Trusted Tour<br>Agency</h5>
+                                <h5 style="margin-top:20%;">등산/캠핑 만렙 회원들에게<br>질문하고 답을 얻어보세요 </h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                         <div class="single-services text-center mb-30">
                             <div class="services-ion">
-                                <span class="flaticon-experience"></span>
+                                <i class="fas fa-thumbs-up fa-4x" ></i>
                             </div>
                             <div class="services-cap">
-                                <h5>28+ Years of Travel<br>Experience</h5>
+                           <h5 style="margin-top:20%;">등산로, 캠핑장, 카라반 등의 <br> 후기를 볼 수 있어요</h5>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6">
                         <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-good"></span>
-                            </div>
+                            <div class="services-ion" >
+                              <i class="far fa-handshake fa-4x"></i>
+                              </div>
                             <div class="services-cap">
-                                <h5>98% Our Travelers<br>are Happy</h5>
+                                <h5 style="margin-top:20%;">관심사가 맞는 친구를 찾아 <br> 같이 여행을 떠나보세요</h5>
                             </div>
                         </div>
                     </div>
