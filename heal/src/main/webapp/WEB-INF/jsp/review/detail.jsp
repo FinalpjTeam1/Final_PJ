@@ -122,7 +122,7 @@ button:disabled {
 	  Kakao.init('26016e2c821266cce72f941b320eaea2'); // 초기화
 	  var title = $('#title').val();
 	  var url = $('#url').val();
-	  
+	
   	function sendLink() { // 카카오톡 공유하기
 		  
 		  Kakao.Link.sendDefault({
@@ -183,14 +183,14 @@ button:disabled {
                      </ul>
                      
                   <!-- 내용 -->
-                    <pre>${dto.re_content}</pre>
+                    <p wrap=hard>${dto.re_content}</p>
                </div>
                
               	<!-- 좋아요 한 회원수 표시 -->
                <div class="navigation-top">
                   <div class="d-sm-flex justify-content-between text-center">
                      <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> ${dto.re_like}
-                         명이 이 글을 좋아합니다!</p>
+                         명이 이 글을 추천합니다!</p>
                      <div class="col-sm-4 text-center my-2 my-sm-0">
                         <!-- <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p> -->
                      </div>
@@ -200,26 +200,12 @@ button:disabled {
                    	
                    	<!--  좋아요  -->
 					<div>
-                    <c:choose>
-  					<c:when test="${like_check == 1}">
-    					<a onclick="dislike(); likeHeart();"><img src='../img/2589175.png' height="20px" width="20px" id='like_img'></a>
-  					</c:when>
-  					<c:otherwise>
-    					<a onclick="like(); dislikeHeart();"><img src='../img/2589197.png' height="40px" width="40px" id='dislike_img'></a>
-  					</c:otherwise>
-					</c:choose>
+    					<a onclick="like();"><img src='../img/like.png' height="30px" width="30px" id='like_img'></a>
+						&nbsp	
+    					<a onclick="dislike();"><img src='../img/dislike.png' height="30px" width="30px" id='dislike_img'></a>
+					
 					</div>
 										
-					 <!-- 카카오톡으로 공유하기 -->
-                        <input type="hidden" value="${dto.re_title}" id="title" value="title">
-                        <input type="hidden" value="${dto.re_no}" id="url" name="url">
-                        <div class="d-flex">
-                           <a id="kakao-link-btn" href="javascript:sendLink()" style="color:black; font-size: 15px;"> 
-                           <img src="../img/2111466.png" height="40px" width="40px"> 
-                           카카오톡으로 공유하기
-                            </a>
-                        </div>
-                   				
 				</div>	
 				<hr>
 				<br>	
@@ -243,6 +229,7 @@ button:disabled {
 
             <div class="col-lg-4">
                <div class="blog_right_sidebar">
+                  <!-- 
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">좋아요 순</h3>
 					<c:forEach var="review" items="${review}" varStatus="status">
@@ -321,21 +308,26 @@ button:disabled {
                         </li>
                      </ul>
                   </aside>
+                  -->
                   <aside class="single_sidebar_widget newsletter_widget">
-                     <h4 class="widget_title">Newsletter</h4>
-                     <form action="#">
-                        <div class="form-group">
-                           <input type="email" class="form-control" onfocus="this.placeholder = ''"
-                              onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                     <h4 class="widget_title">공유하기</h4>
+                       <input type="hidden" value="${dto.re_title}" id="title" value="title">
+                        <input type="hidden" value="${dto.re_no}" id="url" name="url">
+                        <div class="d-flex">
+                        <ol>
+                           <li><a id="kakao-link-btn" href="javascript:sendLink()" style="color:black; font-size: 15px;"> 
+                           <img src="../img/2111466.png" height="40px" width="40px"> 
+                           &nbsp 카카오톡으로 공유하기</a></li>
+                           <li><img src="../img/link.png" height="40px" width="40px"><a href="#" style="color:black" onclick="clip(); return false;">
+                           &nbsp URL 주소 복사하기</a></li>
+                        </ol>
                         </div>
-                        <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
-                           type="submit">Subscribe</button>
-                     </form>
                   </aside>
                </div>
             </div>
          </div>
       </div>
+      
    </section>
    <!--================ Blog Area end =================-->
 
@@ -344,4 +336,21 @@ button:disabled {
 <jsp:include page="../inc/js.jsp" />
 
 </body>
+
+<script type="text/javascript">
+
+function clip(){
+
+	var url = '';
+	var textarea = document.createElement("textarea");
+	document.body.appendChild(textarea);
+	url = window.document.location.href;
+	textarea.value = url;
+	textarea.select();
+	document.execCommand("copy");
+	document.body.removeChild(textarea);
+	alert("URL이 복사되었습니다."  +  url)
+}
+
+</script>
 </html>

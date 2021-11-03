@@ -24,27 +24,27 @@ public class LikeController {
 	
 	@Autowired
 	public LikeService likeService;
-	
-	
-	/** 좋아요  */
-	@RequestMapping("/review/detail/like")
-	public String Like(Like dto, Model model) {
-		likeService.likeCheck(dto);
-		int re_no = dto.getRe_no();
-		
-		int result = reviewService.updateReviewLike(re_no);
-
-		return "/review/detail";
-	}
-	
-	/** 좋아요 취소 */
-	@RequestMapping("/review/detail/like/cancel")
-	public String LikeCancel(Like dto, Model model) {
-		likeService.likeCheckCancel(dto);
-		int re_no = dto.getRe_no();
-		int result = reviewService.updateReviewLike(re_no);
-
-		return "/review/detail";
-	}
+//	
+//	
+//	/** 좋아요  */
+//	@RequestMapping("/review/detail/like")
+//	public String Like(Like dto, Model model) {
+//		likeService.likeCheck(dto);
+//		int re_no = dto.getRe_no();
+//		
+//		int result = reviewService.updateReviewLike(dto);
+//
+//		return "/review/detail";
+//	}
+//	
+//	/** 좋아요 취소 */
+//	@RequestMapping("/review/detail/like/cancel")
+//	public String LikeCancel(Like dto, Model model) {
+//		likeService.likeCheckCancel(dto);
+//		int re_no = dto.getRe_no();
+//		int result = reviewService.updateReviewLike(dto);
+//
+//		return "/review/detail";
+//	}
 	
 }

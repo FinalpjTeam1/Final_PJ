@@ -118,7 +118,7 @@
     <!-- 내용 -->
     <div class="form-group">
       <label for="exampleTextarea" class="form-label mt-4">내용</label>
-      <textarea class="form-control" id="re_content" name="re_content" placeholder="솔직한 후기를 작성해주세요. (500자 이내로 작성 가능합니다.)" rows="3" maxlength="501" required="required"> ${dto.re_content}</textarea>
+      <textarea class="form-control" id="re_content" name="re_content" wrap=physical placeholder="솔직한 후기를 작성해주세요. (500자 이내로 작성 가능합니다.)" rows="10" cols="60" maxlength="501" required="required"> ${dto.re_content}</textarea>
 	</div>
 	<br>
 	<br>

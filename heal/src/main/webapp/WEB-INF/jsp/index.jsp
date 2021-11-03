@@ -18,7 +18,74 @@
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
   />
-		
+   <style >
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+:root {
+  --button-color: #ffffff;
+  --button-bg-color: #0d6efd;
+  --button-hover-bg-color: #025ce2;
+}
+
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  background: var(--button-bg-color);
+  color: var(--button-color);
+  
+  margin: 0;
+  padding: 0.5rem 1rem;
+  
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  text-decoration: none;
+  
+  border: none;
+  border-radius: 4px;
+  
+  display: inline-block;
+  width: 470px;
+  height: 55px;
+  
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  cursor: pointer;
+  
+  transition: 0.5s;
+}
+
+button.success {
+  --button-bg-color: #28a745;
+  --button-hover-bg-color: #218838;
+}
+
+button.error {
+  --button-bg-color: #dc3545;
+  --button-hover-bg-color: #c82333;
+}
+
+button.warning {
+  --button-color: #212529;
+  --button-bg-color: #ffc107;
+  --button-hover-bg-color: #e0a800;
+}
+
+button:active,
+button:hover,
+button:focus {
+  background: var(--button-hover-bg-color);
+  outline: 0;
+}
+button:disabled {
+  opacity: 0.5;
+  
+}
+
+  </style>
    </head>
    <body>
     
@@ -43,22 +110,12 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <!-- form -->
-                                <form action="#" class="search-box">
+                                <form action="/camp/search" class="search-box">
                                     <div class="input-form mb-30">
-                                        <input type="text" placeholder="When Would you like to go ?">
+                                        <input type="text" id="keyword" name="keyword" placeholder="캠핑장 검색을 도와드려요!">
                                     </div>
-                                    <div class="select-form mb-30">
-                                        <div class="select-itms">
-                                            <select name="select" id="select1">
-                                                <option value="">When</option>
-                                                <option value="">Services-1</option>
-                                                <option value="">Services-2</option>
-                                                <option value="">Services-3</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="search-form mb-30">
-                                        <a href="#">Search</a>
+                                    <div>
+                                        <button class="warning">Search
                                     </div>	
                                 </form>	
                             </div>
