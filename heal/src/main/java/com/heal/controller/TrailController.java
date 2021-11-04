@@ -6,17 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/trail")
 public class TrailController {
 	
 	/* 지역 선택 페이지 */
-	@RequestMapping("/sidoMap")
+	@RequestMapping(value="/trail/sidoMap")
 	public String sidoMapForm() {
 		return "trail/sidoMap";
 	}
 	
 	/* 등산로 페이지 */
-	@RequestMapping("/trailMap")
+	@RequestMapping(value="/trail/trailMap")
 	public String trailForm() {
 		return "trail/trailMap";
 	}

@@ -10,7 +10,12 @@
 #states path {
     fill: #585858;
     stroke: #fff;
-    stroke-width: 1.5px;
+    stroke-width: 1px;
+}
+
+#trail path {
+	stroke: red;
+    stroke-width: 10px;
 }
 
 #states path:hover {

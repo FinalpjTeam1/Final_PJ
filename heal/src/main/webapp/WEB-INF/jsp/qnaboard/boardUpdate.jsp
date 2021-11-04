@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Hi-camper │ Q&A 등록</title>
+	<title>Hi-camper │ Q&A 수정</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
@@ -60,6 +60,8 @@
 	        <input type="text" class="form-control" id="qnaTitle" name="qnaTitle" placeholder="제목을 입력하세요.">
 	      </div>
 	      	<input type="hidden" name="id" value="${id}">
+	      	<input type="hidden" name="id" value="${id}">
+	      	<input type="hidden" name="id" value="${id}">
 	      <div class="form-group">
 	        <label for=content">내용</label>
 	        <textarea class="form-control" id="qnaText" name="qnaText"></textarea>
@@ -74,6 +76,6 @@
    <!--================ Form Area end =================-->
 
 	<jsp:include page="../inc/footer.jsp" />
-	
+	<jsp:include page="../inc/js.jsp" />
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.heal.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,18 +25,12 @@ public class QnaBoard {
     private String qnaText;
 
     // 첨부 사진 
-    private String qnaPhoto;
+    private String qnaFile;
 
     // 작성일 
-    private String qnaDate;
-    
-    // 수정일
-    private String qnaEditdate;
+    private Date qnaDate;
     
     // 조회수
     private int qnaViewCnt;
-    
-    // 댓글수 
-    private int qnaReplyCnt;
     
 }

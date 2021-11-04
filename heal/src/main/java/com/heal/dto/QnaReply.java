@@ -1,5 +1,7 @@
 package com.heal.dto;
 
+import java.sql.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Reply {
+public class QnaReply {
 	
 	// 댓글 고유번호 
     private int replyNo;
@@ -21,6 +23,9 @@ public class Reply {
     // 내용 
     private String replyText;
 
-    // 작성일(YYYY-MM-DD hh:mm) 
-    private String replyDate;
+    // 작성일
+    private Date replyDate;
+    
+    // 수정일
+    private Date replyEditdate;
 }
