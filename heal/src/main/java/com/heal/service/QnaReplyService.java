@@ -18,19 +18,19 @@ public class QnaReplyService {
 	private QnaReplyDao qnaReplyDao; 
 	
 	
-	public List<QnaReply> replyList(int qnaNo) {
+	public List<QnaReply> replyList(int qnaNo) throws Exception{
 		return qnaReplyDao.replyList(qnaNo);
 	}
 
-	public int insertReply(QnaReply reply) {
+	public int insertReply(QnaReply reply) throws Exception{
 		return qnaReplyDao.insertReply(reply);
 	}
 
-	public int updateReply(QnaReply reply) {
+	public int updateReply(QnaReply reply) throws Exception{
 		return qnaReplyDao.updateReply(reply);
 	}
 
-	public int deleteReply(int replyNo) {
+	public int deleteReply(int replyNo) throws Exception{
 		return qnaReplyDao.deleteReply(replyNo);
 	}
 

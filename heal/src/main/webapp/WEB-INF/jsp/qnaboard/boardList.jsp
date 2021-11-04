@@ -7,7 +7,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Hi-camper │ Q&A </title>
+	<title>Q&A │ Hi-camper</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
@@ -42,7 +42,7 @@
 	    	<div class="container box_1170 border-top-generic">
 		      	<div class="row">
 		            <div class="col-xl-12">
-		                <!-- form -->
+		                <!-- form 
 		                 <form action="#" method="post" class="search-box">
 					        <div class="input-form mb-30">
 					            <input type="text" name="keyword" placeholder="Search" tabindex="0">
@@ -72,7 +72,8 @@
 		            </div>
 		        </div>
 	    	</div>
-	    </section>
+	    </section>-->
+	   <a href="/qnaboard/insert"><button type="button" class="button button-contactForm btn_1 boxed-btn">글 쓰기</button></a>
 	   <!--================ Section Area end =================-->
         <div class="favourite-place place-padding">
             <div class="container">
@@ -98,9 +99,7 @@
 			                            <div class="place-cap">
 			                                <div class="place-cap-top">
 			                                    <h3><a onclick="location.href='/qnaboard/boardDetail/${list.qnaNo}'">
-			                                    		<c:out value="${list.qnaTitle}"/>
-			                                    	</a></h3>
-			                                    <!-- 글 제목 클릭시 해당글 상세페이지 -->
+			                                    		<c:out value="${list.qnaTitle}"/></a></h3>
 			                                    <p class="dolor"><i class="far fa-clock"></i><c:out value="${list.qnaDate}"/></p>
 			                                </div>
 			                                <div class="place-cap-bottom">
@@ -113,29 +112,8 @@
 			                    </div>
 			                </c:forEach>
 		                </c:when> 
-	                 </c:choose> 
-
-                    <div class="col-xl-4 col-lg-4 col-md-6">
-                        <div class="single-place mb-30">
-                            <div class="place-img">
-                                <img src="../assets/img/service/services2.jpg" alt="">
-                            </div>
-                            <div class="place-cap">
-                                <div class="place-cap-top">
-                                    <span><i class="fas fa-star"></i><span>8.0 Superb</span> </span>
-                                    <h3><a href="#">The Dark Forest Adventure</a></h3>
-                                    <p class="dolor">$1870 <span>/ Per Person</span></p>
-                                </div>
-                                <div class="place-cap-bottom">
-                                    <ul>
-                                        <li><i class="far fa-clock"></i>3 Days</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Los Angeles</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
+	                 </c:choose>
+	                 
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@
               <div class="row">
                   <div class="col-xl-12">
                       <div class="hero-cap text-center">
-                          <h2>Q&A 등록</h2>
+                          <h2>Q & A 수정</h2>
                       </div>
                   </div>
               </div>
@@ -54,20 +54,18 @@
    <section class="blog_area single-post-area section-padding">
       <div class="container">
       	<!-- <%=request.getRealPath("/")%> 실제 파일 저장 경로 알아보기 -->
-	    <form action="/qnaboard/insertBoard" method="post">
+	    <form action="/qnaboard/updateBoard" method="post">
+	      <input type="hidden" name="qnaNo" value="${detail.qnaNo}"/>
 	      <div class="form-group">
-	        <label for="subject">제목</label>
+	        <label for="qnaTitle">제목</label>
 	        <input type="text" class="form-control" id="qnaTitle" name="qnaTitle" placeholder="제목을 입력하세요.">
 	      </div>
-	      	<input type="hidden" name="id" value="${id}">
-	      	<input type="hidden" name="id" value="${id}">
-	      	<input type="hidden" name="id" value="${id}">
+	      	<input type="hidden" name="id" value="${id}"> <!--로그인 세션 id-->
 	      <div class="form-group">
-	        <label for=content">내용</label>
+	        <label for="qnaText">내용</label>
 	        <textarea class="form-control" id="qnaText" name="qnaText"></textarea>
 	      </div>
-	      <button type="submit" class="btn btn-primary">작성</button>
-	      <button type="button" class="btn btn-primary" onclik="window.open('/qnaboard/boardList');">취소</button>
+	      <button type="submit" class="btn btn-primary">수정</button>
 	    </form>
       </div>
    </section>

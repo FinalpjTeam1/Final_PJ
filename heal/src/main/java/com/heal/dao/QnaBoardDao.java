@@ -1,12 +1,14 @@
 package com.heal.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.heal.controller.QnaBoardController;
 import com.heal.dto.QnaBoard;
-import com.heal.dto.QnaReply;
+
+import lombok.extern.slf4j.Slf4j;
+
 
 @Mapper
 public interface QnaBoardDao {
@@ -34,6 +36,7 @@ public interface QnaBoardDao {
 	public void updateViewCnt(int qnaNo);
 	
 	/* Q&A 검색 */
+	
 	
 	
 }

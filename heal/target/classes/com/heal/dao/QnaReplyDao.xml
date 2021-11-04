@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.heal.dao.QnaReplyDao">
-	
-	<resultMap type="com.heal.dto.QnaReply" id="replyList">
-		<result property="replyNo" column="reply_no" />
-		<result property="qnaNo" column="qna_no" />
-		<result property="id" column="id" />
-		<result property="replyText" column="reply_text" />
-		<result property="replyDate" column="reply_date" />
-		<result property="replyEditdate" column="reply_editdate" />
-	</resultMap>
-	
+
 	<!-- public int replyCnt() -->
 	<select id="replyCnt" resultType="int">
         SELECT
@@ -19,7 +10,7 @@
     </select>
     
     <!-- public List<Reply> replyList() -->
-    <select id="replyList" parameterType="int" resultMap="replyList">
+    <select id="replyList" resultType="com.heal.dto.QnaReply">
         SELECT * FROM qna_reply 
         WHERE qna_no = #{qnaNo}
     </select>
@@ -36,7 +27,7 @@
         UPDATE qna_reply
             SET
             reply_text = #{replyText}
-            , reply_editdate = now()
+            , reply_date = now()
         WHERE reply_no = #{replyNo}
     </update>
     

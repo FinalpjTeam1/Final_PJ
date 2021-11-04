@@ -26,7 +26,7 @@
 	<!-- qna_file #{qnaFile} 추가(?) -->
 	<insert id="insertBoard" parameterType="com.heal.dto.QnaBoard">
 		INSERT INTO qna_board (qna_no, id, qna_title, qna_text, qna_file, qna_date, qna_viewcnt)
-		VALUES(qna_board_SEQ.NEXTVAL, #{id}, #{qnaTitle}, #{qnaText}, #{qnaFile}, sysdate, 0)
+		VALUES(qna_board_SEQ.NEXTVAL, #{id}, #{qnaTitle}, 'null', #{qnaFile}, sysdate, 0)
 	</insert>
 	
 	<!-- List<QnaBoard> updateBoard() -->
@@ -40,7 +40,7 @@
 			<if test="qnaText != null">
 				qna_text = #{qnaText}
 			</if>
-			, qna_editdate = now()
+			, qna_date = now()
 		WHERE qna_no = ${qnaNo}
 	</update>
 	

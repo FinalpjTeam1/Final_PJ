@@ -1,24 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../inc/taglib.jsp" %>
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Hi-camper │ Q&A</title>
+	<title>Q&A │ Hi-camper</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.png">
 	
 	<jsp:include page="../inc/css.jsp" />
-
+	<script>
+		var qnaNo = '${detail.qnaNo}'; //게시글 번호
+		
+		$('[name=insertReplyBtn]').click(function(){ //댓글 등록 버튼 클릭시 
+		    var insertData = $('[name=insertReplyForm]').serialize(); //insertReplyForm의 내용을 가져옴
+		    insertReply(insertData); //insertReply 함수호출
+		});
+		 
+		
+		//댓글 목록 
+		function replyList(){
+		    $.ajax({
+		        url : '/reply/replyList',
+		        type : 'get',
+		        data : {'qnaNo':qnaNo},
+		        success : function(data){
+		            var a =''; 
+		            $.each(data, function(key, value){ 
+		            		a += '<div class="comment-list">';
+							a += '<div class="single-comment justify-content-between d-flex">';
+							a += '<div class="user justify-content-between d-flex">';
+							a += '<div class="desc">';
+							a += '<p class="comment'+value.replyText +'">'+value.replyText+'</p>';
+							a += '<div class="d-flex justify-content-between">';
+							a += '<div class="d-flex align-items-center'+value.replyNo+'"><h5>'+value.id+'</h5><p class="date">'+${value.replyDate}+'</p>';						
+							a += '<div class="reply-btn"><a class="btn-reply text-uppercase" onclick="update('+value.replyNo+',\''+value.replyText+'\');"> 수정 </a></div>';						
+							a += '<div class="reply-btn"><a class="btn-reply text-uppercase" onclick="replyDelete('+value.replyNo+');"> 삭제 </a></div>';
+							a += '</div></div></div></div></div></div>';
+		            });
+		            
+		            $(".replyList").html(a);
+		        }
+		    });
+		}
+		 
+		//댓글 등록
+		function insertReply(insertData){
+		    $.ajax({
+		        url : '/reply/insertReply',
+		        type : 'post',
+		        data : insertData,
+		        success : function(data){
+		            if(data == 1) {
+		                replyList(); //댓글 작성 후 댓글 목록 reload
+		                $('[name=replyText]').val('');
+		            }
+		        }
+		    });
+		}
+		 
+		//댓글 수정 - 댓글 내용 출력을 input 폼으로 변경 
+		function update(replyNo, replyText){
+		    var a ='';
+		    
+			a += '<div class="comment-list">';
+			a += '<div class="single-comment justify-content-between d-flex">';
+			a += '<div class="user justify-content-between d-flex">';
+			a += '<div class="desc">';
+			a += '<input type="text" class="form-group" name="replyText_'+replyNo+'" value="'+replyText+'"/>';
+			a += '<div class="d-flex justify-content-between">';
+			a += '<div class="d-flex align-items-center'+value.replyNo+'"><h5>'+value.id+'</h5><p class="date">'+${value.replyDate}+'</p>';						
+			a += '<span class="input-group-btn"><button class="btn btn-default" type="button" onclick="updateReply('+replyNo+');">수정</button> </span>';
+			a += '</div></div></div></div></div></div>';
+		    
+		    $('.replyReplyText'+replyNo).html(a);
+		    
+		}
+		 
+		//댓글 수정
+		function updateReply(replyNo){
+		    var updatereplyText = $('[name=replyText_'+replyNo+']').val();
+		    
+		    $.ajax({
+		        url : '/reply/updateReply',
+		        type : 'post',
+		        data : {'replyText' : updateReplyText, 'replyNo' : replyNo},
+		        success : function(data){
+		            if(data == 1) replyList(qnaNo); //댓글 수정후 목록 출력 
+		        }
+		    });
+		}
+		 
+		//댓글 삭제 
+		function deleteReply(replyNo){
+		    $.ajax({
+		        url : '/reply/deleteReply/'+replyNo,
+		        type : 'post',
+		        success : function(data){
+		            if(data == 1) replyList(qnaNo); //댓글 삭제후 목록 출력 
+		        }
+		    });
+		}
+		 
+		 
+		$(document).ready(function(){
+		    replyList(); //페이지 로딩시 댓글 목록 출력 
+		});
+		
+	</script>
 </head>
 
 <body>
    <jsp:include page="../inc/header.jsp" />
-   
+   <main>
    <!-- slider Area Start-->
    <div class="slider-area ">
       <!-- Mobile Menu -->
@@ -27,7 +125,7 @@
               <div class="row">
                   <div class="col-xl-12">
                       <div class="hero-cap text-center">
-                          <h2></h2>
+                          <h2>Q & A</h2>
                       </div>
                   </div>
               </div>
@@ -37,225 +135,62 @@
    <!-- slider Area End-->
    <!--================ Q&A Area =================-->
    <section class="blog_area single-post-area section-padding">
-      <div class="container">
-		<div class="single-post">
-		   <div class="blog_details">
-		      <h1>${detail}</h1>
-		      <ul class="blog-info-link mt-3 mb-4">
-		         <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-		         <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
-		      </ul>
-		      <p class="excert">
-		         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-		         should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-		         fraction of the camp price. However, who has the willpower
-		      </p>
-		      <p>
-		         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-		         should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-		         fraction of the camp price. However, who has the willpower to actually sit through a
-		         self-imposed MCSE training. who has the willpower to actually
-		      </p>
-		      <div class="quote-wrapper">
-		         <div class="quotes">
-		            MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-		            should have to spend money on boot camp when you can get the MCSE study materials yourself at
-		            a fraction of the camp price. However, who has the willpower to actually sit through a
-		            self-imposed MCSE training.
-		         </div>
-		      </div>
-		      <p>
-		         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-		         should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-		         fraction of the camp price. However, who has the willpower
-		      </p>
-		      <p>
-		         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
-		         should have to spend money on boot camp when you can get the MCSE study materials yourself at a
-		         fraction of the camp price. However, who has the willpower to actually sit through a
-		         self-imposed MCSE training. who has the willpower to actually
-		      </p>
-		   </div>
-		</div>
-		<div class="navigation-top">
-		   <div class="d-sm-flex justify-content-between text-center">
-		      <p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4
-		         people like this</p>
-		      <div class="col-sm-4 text-center my-2 my-sm-0">
-		         <p class="comment-count"><span class="align-middle"><i class="fa fa-comment"></i></span> 06 Comments</p>
-		      </div>
-		      <ul class="social-icons">
-		         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-		         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-		         <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
-		         <li><a href="#"><i class="fab fa-behance"></i></a></li>
-		      </ul>
-		   </div>
-		   <div class="navigation-area">
-		      <div class="row">
-		         <div
-		            class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-		            <div class="thumb">
-		               <a href="#">
-		                  <img class="img-fluid" src="../assets/img/post/preview.png" alt="">
-		               </a>
-		            </div>
-		            <div class="arrow">
-		               <a href="#">
-		                  <span class="lnr text-white ti-arrow-left"></span>
-		               </a>
-		            </div>
-		            <div class="detials">
-		               <p>Prev Post</p>
-		               <a href="#">
-		                  <h4>Space The Final Frontier</h4>
-		               </a>
-		            </div>
-		         </div>
-		         <div
-		            class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-		            <div class="detials">
-		               <p>Next Post</p>
-		               <a href="#">
-		                  <h4>Telescopes 101</h4>
-		               </a>
-		            </div>
-		            <div class="arrow">
-		               <a href="#">
-		                  <span class="lnr text-white ti-arrow-right"></span>
-		               </a>
-		            </div>
-		            <div class="thumb">
-		               <a href="#">
-		                  <img class="img-fluid" src="../assets/img/post/next.png" alt="">
-		               </a>
-		            </div>
-		         </div>
-		      </div>
-		   </div>
-		</div>
-		<div class="blog-author">
-		   <div class="media align-items-center">
-		      <img src="../assets/img/blog/author.png" alt="">
-		      <div class="media-body">
-		         <a href="#">
-		            <h4>Harvard milan</h4>
-		         </a>
-		         <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
-		            our dominion twon Second divided from</p>
-		      </div>
-		   </div>
-		</div>
-		<div class="comments-area">
-		   <h4>Comments</h4>
-		   <c:if test=></c:if>
-		   <div class="comment-list">
-		   		<label for="replyText">reply</label>
-		        <form name="insertReply">
-		            <div class="input-group">
-		               <input type="hidden" name="qnaNo" value="${detail.qnaNo}"/>
-		               <input type="text" class="form-control" id="replyText" name="replyText" placeholder="내용을 입력하세요.">
-		               <span class="input-group-btn">
-		                    <button class="btn btn-default" type="button" name="insertReplyBtn">등록</button>
-		               </span>
-		            </div>
-		        </form>
-		   </div>
-		   <div class="container">
-		   		<div class="replyList"></div>
-		   </div>
-		   
-		   
-		   </div>
-		   <div class="comment-list">
-		      <div class="single-comment justify-content-between d-flex">
-		         <div class="user justify-content-between d-flex">
-		            <div class="thumb">
-		               <img src="../assets/img/comment/comment_1.png" alt="">
-		            </div>
-		            <div class="desc">
-		               <p class="comment">
-		                  Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-		                  Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-		               </p>
-		               <div class="d-flex justify-content-between">
-		                  <div class="d-flex align-items-center">
-		                     <h5>
-		                        <a href="#">Emilly Blunt</a>
-		                     </h5>
-		                     <p class="date">December 4, 2017 at 3:12 pm </p>
-		                  </div>
-		                  <div class="reply-btn">
-		                     <a href="#" class="btn-reply text-uppercase">reply</a>
-		                  </div>
-		               </div>
-		            </div>
-		         </div>
-		      </div>
-		   </div>
-		   <div class="comment-list">
-		      <div class="single-comment justify-content-between d-flex">
-		         <div class="user justify-content-between d-flex">
-		            <div class="thumb">
-		               <img src="../assets/img/comment/comment_2.png" alt="">
-		            </div>
-		            <div class="desc">
-		               <p class="comment">
-		                  Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-		                  Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-		               </p>
-		               <div class="d-flex justify-content-between">
-		                  <div class="d-flex align-items-center">
-		                     <h5>
-		                        <a href="#">Emilly Blunt</a>
-		                     </h5>
-		                     <p class="date">December 4, 2017 at 3:12 pm </p>
-		                  </div>
-		                  <div class="reply-btn">
-		                     <a href="#" class="btn-reply text-uppercase">reply</a>
-		                  </div>
-		               </div>
-		            </div>
-		         </div>
-		      </div>
-		   </div>
-		<div class="comment-form">
-		   <h4>Leave a Reply</h4>
-		   <form class="form-contact comment_form" action="#" id="commentForm">
-		      <div class="row">
-		         <div class="col-12">
-		            <div class="form-group">
-		               <textarea class="form-control w-100" name="comment" id="comment" cols="30" rows="9"
-		                  placeholder="Write Comment"></textarea>
-		            </div>
-		         </div>
-		         <div class="col-sm-6">
-		            <div class="form-group">
-		               <input class="form-control" name="name" id="name" type="text" placeholder="Name">
-		            </div>
-		         </div>
-		         <div class="col-sm-6">
-		            <div class="form-group">
-		               <input class="form-control" name="email" id="email" type="email" placeholder="Email">
-		            </div>
-		         </div>
-		         <div class="col-12">
-		            <div class="form-group">
-		               <input class="form-control" name="website" id="website" type="text" placeholder="Website">
-		            </div>
-		         </div>
-		      </div>
-		      <div class="form-group">
-		         <button type="submit" class="button button-contactForm btn_1 boxed-btn">Send Message</button>
-		      </div>
-		   </form>
-		</div>
-      </div>
-   </section>
+		<div class="container">
+			<div class="single-post">
+				<div class="blog_details">
+					<form action="/qnaboard/insertBoard" method="post">
+						<h1>${detail.qnaTitle}</h1>
+						<ul class="blog-info-link mt-3 mb-4">
+							<li><i class="fa fa-user"></i>${detail.id}</li>
+							<li><i class="far fa-clock"></i>${detail.qnaDate}</li>
+						</ul>
+						<p class="excert">${detail.qnaText}</p>
+						<div class="reply-btn">
+							<a href="/qnaboard/update/${detail.qnaNo}" class="btn-reply text-uppercase">수정</a>
+							<a href="/qnaboard/delete/${detail.qnaNo}" onclick="return deleteBoard();"class="btn-reply text-uppercase">삭제</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+			<div class="navigation-top">
+				<div class="d-sm-flex justify-content-between text-center">
+			    <!--<p class="like-info"><span class="align-middle"><i class="fa fa-heart"></i></span> Lily and 4 people like this</p>-->
+					<div class="col-sm-4 text-center my-2 my-sm-0"></div>
+					<ul class="social-icons">
+						<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+						<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+						<li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+						<li><a href="#"><i class="fab fa-behance"></i></a></li>
+					</ul>
+			   </div>
+			</div>
+			
+			<!-- qnaBoardReply -->
+			<div class="comments-area">
+			   <h4><i class="far fa-comment-dots"></i>${list.qnaReplyCnt} Comments</h4>
+			   <div class="comment-list">
+			        <form name="insertReplyForm">
+			            <div class="input-group">
+			               <input type="hidden" name="qnaNo" value="${detail.qnaNo}"/>
+			               <input type="text" class="form-control" id="replyText" name="replyText" placeholder="내용을 입력하세요.">
+			               <span class="input-group-btn">
+			                    <button class="btn btn-default" type="button" name="insertReplyBtn">등록</button>
+			               </span>
+			            </div>
+			        </form>
+			   </div>
+			</div>
+			
+			<div class="replyList"></div>
+	      
+		</div><!--container-->
+	</section>
    <!--================ Q&A Area end =================-->
-
+	</main>
 	<jsp:include page="../inc/footer.jsp" />
 	<jsp:include page="../inc/js.jsp" />
-        
+	
+   
 </body>
 </html>

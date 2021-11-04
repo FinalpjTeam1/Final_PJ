@@ -1,8 +1,10 @@
 package com.heal.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,33 +29,33 @@ public class QnaBoardController {
 	
 	
 	@RequestMapping("/boardList")
-	public String boardList(Model model, HttpSession session) {
+	public String boardList(Model model, HttpSession session) throws Exception{
 		model.addAttribute("list", qnaBoardService.boardList());
 		return "qnaboard/boardList";
 	}
 	
 	
 	@RequestMapping("/boardDetail/{qnaNo}")
-	public String boardDetail(@PathVariable int qnaNo, Model model, HttpSession session) {
+	public String boardDetail(@PathVariable int qnaNo, Model model, HttpSession session) throws Exception{
 		model.addAttribute("detail", qnaBoardService.boardDetail(qnaNo));
 		return "qnaboard/boardDetail";
 	}
 	
 	
 	@RequestMapping("/insert") //게시글 작성폼 호출  
-	public String insertBoardForm() {
-		
-		
+	public String insertBoardForm() throws Exception{
 		//qnaBoardService.insertBoard(qnaBoard);
 		return "qnaboard/boardForm";
 	}
 	
 	
 	@RequestMapping("/insertBoard")
-	public String insertBoard(HttpServletRequest request, HttpSession session) {
+	public String insertBoard(HttpServletRequest request, HttpSession session, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		
 		QnaBoard qnaBoard = new QnaBoard();
-		//String id = (String)session.getAttribute("id");
-		qnaBoard.setId(request.getParameter("id"));
+		String id = (String)session.getAttribute("id");
+		qnaBoard.setId(request.getParameter(id));
 		qnaBoard.setQnaTitle(request.getParameter("qnaTitle"));
 		qnaBoard.setQnaText(request.getParameter("qnaText"));
 		qnaBoardService.insertBoard(qnaBoard);
@@ -62,7 +64,7 @@ public class QnaBoardController {
 	
 	
 	@RequestMapping("/update/{qnaNo}") //게시글 수정폼 호출  
-	public String updateBoardForm(@PathVariable int qnaNo, Model model) {
+	public String updateBoardForm(@PathVariable int qnaNo, Model model) throws Exception{
 		model.addAttribute("detail", qnaBoardService.boardDetail(qnaNo));
 		return "qnaboard/update";
 
@@ -70,17 +72,21 @@ public class QnaBoardController {
 	
 	
 	@RequestMapping("/updateBoard")
-	public int updateBoard(HttpServletRequest request) {
+	public String updateBoard(HttpServletRequest request) throws Exception{
 		QnaBoard qnaBoard = (QnaBoard)request.getParameterMap();
-		return qnaBoardService.updateBoard(qnaBoard);
+		qnaBoard.setQnaTitle(request.getParameter("qnaTitle"));
+		qnaBoard.setQnaText(request.getParameter("qnaText"));
+		qnaBoardService.updateBoard(qnaBoard);
+		return "redirect:/qnaboard/boardDetail/"+request.getParameter("qnaNo");
 
 	}
 	
 	
-	@RequestMapping("/delete/{bno}")
-	public String deleteBoard(@PathVariable int qnaNo) {
+	@RequestMapping("/delete/{qnaNo}")
+	public String deleteBoard(@PathVariable int qnaNo) throws Exception{
 		qnaBoardService.deleteBoard(qnaNo);
 		return "redirect:/boardList";
 	}
 	
+
 }

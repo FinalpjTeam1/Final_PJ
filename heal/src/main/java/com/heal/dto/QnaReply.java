@@ -25,7 +25,5 @@ public class QnaReply {
 
     // 작성일
     private Date replyDate;
-    
-    // 수정일
-    private Date replyEditdate;
+
 }

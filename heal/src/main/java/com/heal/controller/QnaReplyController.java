@@ -2,6 +2,8 @@ package com.heal.controller;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -25,26 +27,26 @@ public class QnaReplyController {
 	
 	@RequestMapping("/replyList")
     @ResponseBody
-    public List<QnaReply> replyList(Model model, int qnaNo) {
+    public List<QnaReply> replyList(Model model, int qnaNo) throws Exception{
         return qnaReplyService.replyList(qnaNo);
     }
     
 	
     @RequestMapping("/insertReply")
     @ResponseBody
-    public int insertReply(@RequestParam int qnaNo, @RequestParam String replyText, @RequestParam String id, HttpSession session ) {
+    public int insertReply(@RequestParam int qnaNo, @RequestParam String replyText, @RequestParam String id,HttpServletRequest request, HttpSession session) throws Exception{
     	QnaReply reply = new QnaReply();
+    	//String id = (String)session.getAttribute("id"); 
     	reply.setQnaNo(qnaNo);
     	reply.setReplyText(replyText);
-        //로그인 기능을 구현했거나 따로 댓글 작성자를 입력받는 폼이 있다면 입력 받아온 값으로 사용하면 됩니다. 저는 따로 폼을 구현하지 않았기때문에 임시로 "test"라는 값을 입력해놨습니다.
-    	reply.setId("id");  
+    	reply.setId("test");
         return qnaReplyService.insertReply(reply);
     }
     
     
     @RequestMapping("/updateReply")
     @ResponseBody
-    public int updateReply(@RequestParam int replyNo, @RequestParam String replyText, HttpSession session) {
+    public int updateReply(@RequestParam int replyNo, @RequestParam String replyText) throws Exception{
     	QnaReply reply = new QnaReply();
     	reply.setReplyNo(replyNo);
     	reply.setReplyText(replyText);
@@ -54,7 +56,7 @@ public class QnaReplyController {
     
     @RequestMapping("/deleteReply/{replyNo}")
     @ResponseBody
-    public int deleteReply(@PathVariable int replyNo, HttpSession session) {
+    public int deleteReply(@PathVariable int replyNo) throws Exception{
         return qnaReplyService.deleteReply(replyNo);
     }
 
