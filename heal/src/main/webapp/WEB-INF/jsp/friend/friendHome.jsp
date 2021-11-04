@@ -47,6 +47,11 @@
 		h1, h2, h3, h4, h5, h6, p, label{
 	     font-family: 'Nanum Gothic', sans-serif; !important;
 	    } 
+	    
+	    	    .nick{
+	    	background-color:#4169e1	;
+	    	color: white;
+	    }
 	    </style>
 	    
 </head>
@@ -57,7 +62,7 @@
 </header>
 
 	<section>
-		<div class="container-fluid " style=" height:50%; width:80%; border : 1px solid black;">
+		<div class="container-fluid " style=" margin-top:10%;  height:50%; width:80%; ">
 			
 			<!-- 내 프로필 부분 -->
 			<div class = "row">
@@ -76,10 +81,13 @@
 							<c:if test="${!empty profile}">
 							  <img src="/profile/${profile.fileName} " alt="user" style="width:100%">
 								  <br>
-								  <h3 class="center" style="font-size: large; !important"><b>${profile.nick} </b></h3>
-								  <p id="profile_title">${profile.age}</p>
-								  <p>${profile.intro}</p>
-								  <span class="tag">${profile.interest} </span>
+								  <h3 class="center" style="margin-top: 5%;"><b class="nick">${profile.nick} / ${profile.age}</b></h3>
+								  <h4 class="center" >
+								  		<c:forTokens items="${profile.interest} " delims="," var="item">
+										  <b># ${item}</b>
+										</c:forTokens>
+								  </h4>
+								  <p>${profile.intro}</p>			
 								  <p><a href="/friend/editProfile" id="profile_button">프로필 수정</a></p>
 							   	<button type="button" class="btn btn-danger btn-block" onclick="profileDelete();">삭제하기</button>
 							</c:if>
@@ -90,7 +98,7 @@
   				</form>
   			<!-- 내 프로필 부분 끝  -->	
   			
-  				<div class="col-md-4 " style=" height:300px; border:1px solid red;" >
+  				<div class="col-md-4 " style=" height:300px; " >
   				<h3 class="text-center"><b>친구 목록</b><hr></h3>
 		  				
 		  				<c:if test="${empty friendProfile }">
@@ -101,24 +109,24 @@
 				   			 <table class="table table-striped custab">
 								    <thead>
 									        <tr>
-									            <th>닉네임</th>
-									            <th>연령대</th>
-									            <th class="text-center">관리</th>
+									            <th><h5>닉네임</h5></th>
+									            <th><h5>연령대</h5></th>
+									            <th class="text-center"><h5>관리</h5></th>
 									        </tr>
 								    </thead>
 								<c:forEach var="list" items="${friendProfile}" varStatus="status"> 
 								            <tr>
-									                <td >${list.nick }</td>
-									                <td>${list.age }</td>
+									                <td ><h5>${list.nick }</h5></td>
+									                <td><h5>${list.age }</h5></td>
 									                <td class="text-center">
-										                <a class='btn btn-info btn-xs' href="/friend/friendDetail?id=${list.id }"><span class="glyphicon glyphicon-zoom-in"></span>자세히</a> 
-										                <a href="/friend/friendDelete?id=${list.id }" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
+										                <a class=' btn-info btn-xs' href="/friend/friendDetail?id=${list.id }"><span class="glyphicon glyphicon-zoom-in"></span>자세히</a> 
+										                <a href="/friend/friendDelete?id=${list.id }" class=" btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>삭제</a>
 									                </td>
 								            </tr>
 								   </c:forEach>
 								   		<tr>
 									                <td colspan="3" class="text-center">
-									                <a href="/friend/friendList" type="button"  class="btn" id="profile_button"> 친구 전체 보기</a>      	
+									                <a href="/friend/friendList" id="profile_button"> 친구 전체 보기</a>      	
 									                </td>
 									  </tr>
 							 </table>
@@ -126,7 +134,7 @@
   				</div>
   					<div class="col-md-5 center"style=" height:30%;" >
 			  					<h3 class="center" > <b>* 친구 찾기 안내 사항 *</b><hr></h3>
-			  					<h5 class="center">1. 타인의 사진을 도용하지 마세요. </h5>
+			  					<h5 class="center">1. 상대방에게 예의를 지켜주세요. </h5>
 			  					<h5 class="center">2. 욕설 / 싸움 / 상대방을 불쾌하게 만드는 언행  등으로 <br> 잦은 신고 접수시 해당 서비스를 이용할 수 없습니다.</h5>
 			  					<h5 class="center">3. 개인 정보, 사생활을 지나치게 묻거나 공개하는 것을 지양해주세요.</h5><hr>
 			  					

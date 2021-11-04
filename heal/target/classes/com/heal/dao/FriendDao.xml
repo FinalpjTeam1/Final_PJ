@@ -65,7 +65,9 @@
        <select id ="getSameAgeFriend" resultType="com.heal.dto.Profile">
         <![CDATA[
        select * from profile where age = #{age} 
-       and id not in #{id}  and rownum <3
+       and id not in #{id}  
+        and id not in (select friend from friend where id=  #{id} )
+       and rownum <3
        	]]>
        </select>
        
@@ -76,7 +78,9 @@
        <select id ="getSameInterest" resultType="com.heal.dto.Profile">
          <![CDATA[
 		select * from profile where REGEXP_LIKE (interest, #{interest}) 
-		and id not in #{id} and rownum <3
+		and id not in #{id} 
+		 and id not in (select friend from friend where id= #{id} )
+		and rownum <3
        	]]>
        </select>
        
@@ -84,4 +88,10 @@
         update  profile set intro=#{intro}, interest=#{interest}, fileName=#{fileName},fileOriName= #{fileOriName},fileUrl=#{fileUrl}
 		where id=#{id}
        </insert>
+       
+       <select id="getMyFriend" resultType="com.heal.dto.Friend" >
+       select * from friend where id=#{id}
+       </select>
+       
+
 </mapper>

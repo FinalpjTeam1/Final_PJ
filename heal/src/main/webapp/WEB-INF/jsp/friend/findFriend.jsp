@@ -25,23 +25,14 @@
 	<!-- CSS -->
 		    	<!-- CSS -->
 <jsp:include page="../inc/css.jsp" />
-	<link type="text/css" rel="stylesheet" href="/css/juri.css">
+
 	
 		<style>
-		h1, h2, h3, h4, h5, h6, p, label{
-	     font-family: 'Nanum Gothic', sans-serif; !important;
-	    }
-	    
-	    h5 {
-	    font-size: 1.28571429em;
-	    font-weight: 700;
-	    line-height: 1.2857em;
-	    margin: 0;
-	}
-	
 	.card {
 	    font-size: 1em;
 	    overflow: hidden;
+	    width : 300px;
+	    height : 500px;
 	    padding: 0;
 	    border: none;
 	    border-radius: .28571429rem;
@@ -79,8 +70,8 @@
 	.card-footer {
 	    font-size: 1em;
 	    position: static;
-	    top: 0;
 	    left: 0;
+	    bottom:0;
 	    max-width: 100%;
 	    padding: .75em 1em;
 	    color: rgba(0, 0, 0, .4);
@@ -177,6 +168,29 @@
 	.tab-card-header > .tab-content {
 	  padding-bottom: 0;
 	}
+	
+	.size{
+		width: 300px; height: 300px;
+		object-fit: cover;
+		background-size : contain;
+		display: block;
+		
+	}
+	
+	.last{
+	 text-align: center;
+	 margin-left: 15%;
+	}
+	
+		h1, h2, h3, h4, h5, h6, p, label, a{
+	     font-family: 'Nanum Gothic', sans-serif; !important;
+	    }
+	    
+	    .nick{
+	    	background-color:#4169e1	;
+	    	color: white;
+	    }
+	
 	    </style>
 	    
 	    <script type="text/javascript">
@@ -260,43 +274,50 @@
   </header>
 
 	<section>
-		<div class="container-fluid " style=" height:50%; width:80%; border : 1px solid black; padding-bottom: 5%">
+		<div class="container-fluid " style=" height:50%; width:80%; padding-bottom: 5%">
 			
 				<h2 class="center" style="margin-top:2%; margin-bottom: 10%; text-align: center; !important"><b>${id } 님에게 잘 어울릴 것 같은 친구를 추천해드릴게요</b><hr></h2>
 				
 				<!-- 프로필 컨텐츠가 없거나, 추천 친구가 없을 때  -->
-				<c:if test="${empty profile }">
-				<h3 class ="center">추천 친구를 보여드리기에는 아직 정보가 부족해요!  &#128546;<br> 프로필 작성을 하거나, 새로운 친구들이 프로필을 등록할 때까지 잠시만 기다려주세요. </h3>
+				<c:if test="${ empty sameAge && empty sameInterest }">
+				<h3 class ="center" style="margin-top: -5%">추천 친구를 보여드리기에는 아직 정보가 부족해요!  &#128546;<br> 프로필 작성을 하거나, 새로운 친구들이 프로필을 등록할 때까지 잠시만 기다려주세요. </h3>
 				</c:if>
-				<div class = "row">
-						<!-- 추천 친구 있음 -->
+				
+				
+				<div class = "row" style="margin-top:-10%;">
+						<!-- 추천 친구 있음 
 						<c:if test="${!empty profile }">
-						<h3  style="margin-top:-5%; margin-bottom: 5%; text-align: center;">${id } 님에게 잘 어울릴 것 같은 친구로 하이캠퍼가 뽑아봤어요! &#128522; </h3>
-						</c:if>
+						<h3  style="margin-top:-5%; margin-bottom: 5%; height:2%; text-align: center; !important">${id } 님에게 잘 어울릴 것 같은 친구로 하이캠퍼가 뽑아봤어요! &#128522; </h3>
+						</c:if> -->
 						<!-- 카드 콘텐츠 : 같은 연령대 추천-->				
 						<c:if test="${!empty sameAge }">
-							<c:forEach var="list" items="${sameAge}" varStatus="status"> 		
-										<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-								                <div class="card">
-								                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
-								                    <div class="card-block">
-			
-								                        <h4 class="card-title mt-3">${list.nick}</h4>
+							<c:forEach var="listAge" items="${sameAge}" varStatus="status"> 		
+										<div class="col-sm-6 col-md-4 col-lg-3 mt-4 d-flex align-items-stretch"  >
+								                <div class="card" style="height:500px !important">
+								                	<div style="height:300px; width:300px;"> 
+								                    <img class="card-img-top size" src="/profile/${listAge.fileName}" >
+								                    </div>
+								                    <div class="card-block" >
+								                        <h3 class="nick">${listAge.nick}</h3>
 								            <!--  <span style="float:right;"><button  type="button" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-heart"></i></button></span>--> 
 								                        <div class="meta">
-								                            <a>연령대 : ${list.age}</a><br>
-								                            <a>관심사 : ${list.interest}</a>
+								                            <h5>연령대 : ${listAge.age}</h5>
+								                          <h5> 
+									                          <c:forTokens items="${profile.interest} " delims="," var="item">
+																  <b># ${item}</b>
+																</c:forTokens>
+														</h5>
 								                        </div>
 								                        <div class="card-text">
-															${list.intro}
+															<h4>${listAge.intro}</h4>
 								                        </div>
 								                    </div>
-								                     <div class="card-footer">
+								                     <div class="card-footer" >
 								                        <small>마지막 접속: 2021-10-31</small>
-								                        <button class="btn btn-secondary float-right btn-sm" onclick="addFriend()">친구 추가하기</button>
+								                        <button class="btn btn-secondary last btn-sm" onclick="addFriend()">친구 추가하기</button>
 								                        
 								                        <form action="/friend/addFriend" method="post" name="addForm" id="addForm">
-								                        <input type="hidden" id="friend" name="friend" value="${list.id }">
+								                        <input type="hidden" id="friend" name="friend" value="${listAge.id }">
 								                        </form>
 								                    </div>
 								                </div>
@@ -306,28 +327,32 @@
 								
 								<!-- 같은 관심사 추천 -->
 								<c:if test="${!empty sameInterest }">
-									<c:forEach var="list" items="${sameInterest}" varStatus="status"> 		
-												<div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+									<c:forEach var="listInterest" items="${sameInterest}" varStatus="status"> 		
+												<div class="col-sm-6 col-md-4 col-lg-3 mt-4 d-flex align-items-stretch">
 										                <div class="card">
-										                    <img class="card-img-top" src="https://pbs.twimg.com/profile_images/1374979417915547648/vKspl9Et.jpg">
+										                    <img class="card-img-top size" src="/profile/${listInterest.fileName} ">
 										                    <div class="card-block">
 					
-										                        <h4 class="card-title mt-3">${list.nick}</h4>
+										                        <h3 class="nick">${listInterest.nick}</h3>
 										            <!--  <span style="float:right;"><button  type="button" class="btn btn-danger btn-circle "><i class="glyphicon glyphicon-heart"></i></button></span>--> 
 										                        <div class="meta">
-										                            <a>연령대 : ${list.age}</a><br>
-										                            <a>관심사 : ${list.interest}</a>
+										                           <h5>연령대 : ${listInterest.age} </h5>
+										                            <h5>
+											                            <c:forTokens items="${listInterest.interest} " delims="," var="item">
+											  								<b># ${item}</b>
+																		</c:forTokens>
+																	</h5>
 										                        </div>
 										                        <div class="card-text">
-																	${list.intro}
-										                        </div>
+																		<h4><b>${listInterest.intro}</b></h4>
+																</div>
 										                    </div>
 										                     <div class="card-footer">
-										                        <small>마지막 접속: 2021-10-31</small>
-										                        <button class="btn btn-secondary float-right btn-sm" onclick="addFriend()">친구 추가하기</button>
+										                        <h5>마지막 접속: 2021-10-31</h5>
+										                        <button class="btn btn-secondary btn-sm last" onclick="addFriend()">친구 추가하기</button>
 										                        
 										                        <form action="/friend/addFriend" method="post" name="addForm" id="addForm">
-										                        <input type="hidden" id="friend" name="friend" value="${list.id }">
+										                        <input type="hidden" id="friend" name="friend" value="${listInterest.id }">
 										                        </form>
 										                    </div>
 										                </div>

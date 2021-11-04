@@ -79,21 +79,29 @@
 			
 			//(1) 자기소개 
 			var intro = document.getElementById('intro').value;
-			
-			if(intro.trim() == ""){
-				alert('[안내] 자기소개를 입력해주세요');
-				$('#intro').focus();			
-				return false ;
+		
+			var count = 0; 
+			var check = document.getElementsByName('interest'); 
+			for (var i = 0; i < check.length; i++) {    // 관심분야 검사 
+			  if (check[i].checked) { 
+			    count = 1; 
+			    break; 
+			  } 
 			} 
-			
-			if(intro.length > 20){
+		
+			if(formintro.length > 20){
 				alert('[안내] 자기소개를 20자 이하로 입력해주세요');
 				$('#intro').focus();
-				return false;
+				return false ;
 			}
 			
 			//(2) 관심사 
-  
+			if (count == 0) {  //관심분야 확인 
+				  alert("[안내] 관심분야를 체크해 주세요"); 
+				  return false; 
+				} else{
+					alert("유효성 검사끝!");
+				}
 		}
 		
 	</script>
@@ -127,8 +135,9 @@
 		<div class="container-fluid " style=" margin-top: 20%; height:50%; width:80%; ">
 			<div class="page-wrapper bg-dark p-t-100 p-b-50">
 			        <div class="wrapper wrapper--w900">   
+			        
 			        <!-- 폼 처음 -->
-			        <form name = "EditForm" id="EditForm" action="/editProfile" method="post"  enctype="multipart/form-data">
+			        <form name = "EditForm" id="EditForm" action="/editProfile" method="post"  enctype="multipart/form-data" onsubmit="return formCheck();">
 			            <div class="card card-6">
 			                <div class="card-heading">
 			                    <h2 class="title" >프로필 수정</h2>
@@ -137,7 +146,7 @@
 			                        <div class="form-row">
 			                            <div class="name">자기소개</div>
 			                            <div class="value">
-			                                <input class="input--style-6" type="text" name="intro" id="intro" maxlength="30" value="${profile.intro }" >
+			                                <input class="input--style-6" type="text" name="intro" id="intro" maxlength="30" value="${profile.intro }" required="required">
 			                                <div class="label--desc">최대 20글자까지 작성해주세요.</div>
 			                            </div> 
 			                        </div>
@@ -176,14 +185,14 @@
 			                                </div>
 			                                <div class="label--desc">얼굴이 선명하게 나온 사진을 올려주세요. 파일의 최대 크기는 15mb입니다.</div>
 			                            	<div id="image_container" >
-			                            	<span> <b>기존 프로필 사진 </b></span><br>
-			                            	<img alt=""  src="/profile/${profile.fileName} ">
+			                            	<span><h5><b>기존 프로필 사진 </b></h5> </span><br>
+			                            	<img alt=""  src="/profile/${profile.fileName} " style="max-height: 50%; max-height: 50%;">
 			                            	</div>
 			                            	
 			                            </div>
 			                        </div>
 			                </div>
-			                <div class="card-footer">
+			                <div class="card-footer" >
 			                    <button class="btn btn--radius-2 btn--blue-2" onclick="formCheck();" style="margin-left: 35%">등록하기</button>	                 
 			                </div>
 			            </div>

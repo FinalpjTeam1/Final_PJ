@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.heal.dto.Friend;
 import com.heal.dto.Member;
 import com.heal.dto.Profile;
 
@@ -59,6 +60,10 @@ public interface FriendDao {
 
 	//프로필 업데이트
 	public int updateProfile(Profile profile);
+
+	//내 친구 목록
+	public ArrayList<Friend> getMyFriend(String id);
+
 	
 
 

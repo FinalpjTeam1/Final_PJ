@@ -10,8 +10,8 @@
 				<result property="mobile" column="mobile"/>
 				<result property="gender" column="gender"/>
 				<result property="age" column="age"/>
-				<result property="last_login" column="last_login"/>
-				<result property="entry_date" column="entry_date"/>
+				<result property="last_login" column="last_login" jdbcType="VARCHAR" javaType="java.lang.String" />
+				<result property="entry_date" column="entry_date" />
 				<result property="grade" column="grade"/>
 		</resultMap>
 		

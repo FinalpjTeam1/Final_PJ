@@ -22,6 +22,9 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 	
+		<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
+	
 		<script type="text/javascript">
 	
 		//이미지 함수
@@ -89,7 +92,7 @@
 		function formCheck() {
 			
 			//(1) 자기소개 
-			var intro = document.getElementById('intro').value;
+			var intro = document.getElementById("intro").value;
 			
 			if(intro.trim() == ""){
 				alert('[안내] 자기소개를 입력해주세요');
@@ -103,18 +106,6 @@
 				return false;
 			}
 			
-			//(2) 관심사 
-			var objWrite3 = document.getElementsByName("interest");
-			
-			for(var i=0;i<objWrite3.length;i++){
-				    if(objWrite3[i].checked == false){
-				        alert("[안내] 관심사를 선택해주세요.");
-				        return false;
-				    }
-				    $('#profileForm').submit();
-			}    
-			
-
 		}
 		
 	</script>
@@ -141,8 +132,7 @@
 
 </head>
 
-	<!-- CSS -->
-<jsp:include page="../inc/css.jsp" />
+
 <body>
 
 <header>

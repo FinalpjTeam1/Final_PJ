@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.resource.HttpResource;
 import org.apache.commons.lang3.RandomStringUtils;
 //json parser
 import org.json.simple.JSONArray;
@@ -26,6 +27,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.heal.dto.Friend;
 //
 import com.heal.dto.Member;
 import com.heal.dto.Profile;
@@ -89,7 +91,7 @@ public class MatchingFriendController {
 		
 		/** 내 프로필 저장*/
 		@RequestMapping("/saveProfile")
-		public String saveProfile(Profile profile,  HttpServletRequest request, HttpSession session, Model model,
+		public String saveProfile(Profile profile, HttpServletResponse response_error, HttpServletRequest request, HttpSession session, Model model,
 				@RequestPart(value="file") MultipartFile files) throws Exception{
 			
 			String id= (String)session.getAttribute("id");
@@ -117,16 +119,108 @@ public class MatchingFriendController {
 		    	        
 		    	        destinationFile.getParentFile().mkdirs(); 
 		    	        files.transferTo(destinationFile); 
+		    	          	        
+		    	        //api 테스트	        
+		    	        StringBuffer reqStr = new StringBuffer();
+		    	        String clientId = "t6b3hcxzXWbixb_bNEZX";//애플리케이션 클라이언트 아이디값";
+		    	        String clientSecret = "tmOhv7VXcc";//애플리케이션 클라이언트 시크릿값";
 		    	        
-		    	        profile.setFileName(destinationFileName);
-		    	        profile.setFileOriName(fileName);
-		    	        profile.setFileUrl(fileUrl);
+		    	        try {
+		    	            String paramName = "image"; // 파라미터명은 image로 지정
+		    	            File uploadFile = new File(fileUrl + destinationFileName); 
+		    	            String apiURL = "https://openapi.naver.com/v1/vision/face"; // 얼굴 감지
+		    	            URL url = new URL(apiURL);
+		    	            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+		    	            con.setUseCaches(false);
+		    	            con.setDoOutput(true);
+		    	            con.setDoInput(true);
+		    	            // multipart request
+		    	            String boundary = "---" + System.currentTimeMillis() + "---";
+		    	            con.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+		    	            con.setRequestProperty("X-Naver-Client-Id", clientId);
+		    	            con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+		    	            OutputStream outputStream = con.getOutputStream();
+		    	            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
+		    	            String LINE_FEED = "\r\n";
+		    	            // file 추가
+		    	            String fileName2 = uploadFile.getName();
+		    	            writer.append("--" + boundary).append(LINE_FEED);
+		    	            writer.append("Content-Disposition: form-data; name=\"" + paramName + "\"; filename=\"" + fileName2 + "\"").append(LINE_FEED);
+		    	            writer.append("Content-Type: "  + URLConnection.guessContentTypeFromName(fileName2)).append(LINE_FEED);
+		    	            writer.append(LINE_FEED);
+		    	            writer.flush();
+		    	            FileInputStream inputStream = new FileInputStream(uploadFile);
+		    	            byte[] buffer = new byte[4096];
+		    	            int bytesRead = -1;
+		    	            while ((bytesRead = inputStream.read(buffer)) != -1) {
+		    	                outputStream.write(buffer, 0, bytesRead);
+		    	            }
+		    	            outputStream.flush();
+		    	            inputStream.close();
+		    	            writer.append(LINE_FEED).flush();
+		    	            writer.append("--" + boundary + "--").append(LINE_FEED);
+		    	            writer.close();
+		    	            BufferedReader br = null;
+		    	            int responseCode = con.getResponseCode();
+		    	            if(responseCode==200) { // 정상 호출
+		    	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		    	            } else {  // 에러 발생
+		    	                System.out.println("error!!!!!!! responseCode= " + responseCode);
+		    	                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+		    	            }
+		    	            String inputLine;
+		    	            if(br != null) {
+		    	                StringBuffer response = new StringBuffer();
+		    	                while ((inputLine = br.readLine()) != null) {
+		    	                    response.append(inputLine);
+		    	                }
+		    	                br.close();
+		    	                
+		    	                    
+		    	                String jsonText = response.toString();
+		    	                
+		    	                JSONParser jsonParser = new JSONParser();
+		    	                JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonText);
+		    	                JSONObject dataObject = (JSONObject) jsonObject.get("info");
+
+		    	                int faceCount =  Integer.parseInt(String.valueOf(dataObject.get("faceCount")));
+		    	                System.out.println("얼굴 인식 결과"+faceCount);
+		    	                System.out.println(dataObject);
+		    	                
+		    	                //얼굴이 나와있는 정상 프로필 사진 전송
+		    	                if(faceCount == 1) {
+		    	                	
+		    	                	 	profile.setFileName(destinationFileName);
+		    			    	        profile.setFileOriName(fileName);
+		    			    	        profile.setFileUrl(fileUrl);
+		    			    	        
+		    			    	        int result = friendService.insertProfile(profile);
+		    			    	        
+		    			    	        if(result==1) {
+		    			    				return "/friend/friendHome";
+		    			    			}else {
+		    			    				model.addAttribute("title","프로필 추가 실패");
+		    			    				model.addAttribute("message", "프로필 추가를 실패하였습니다. 관리자에게 문의하거나 다시 시도해주세요");
+		    			    				return "error";
+		    			    			}		    	                	
+		    	                }else {
+		    	                	//얼굴이 없는 사진 경우 
+		    	                	response_error.setContentType("text/html;charset=utf-8");
+		    	        			PrintWriter out = response_error.getWriter();
+		    	        			out.println("<script>alert('[안내] 얼굴이 정확하게 나온 프로필 사진을 올려주세요.'); </script>");
+		    	        			out.flush();
+
+		    	        			return "/friend/myProfile";
+		    	                }
+		    	            } else {
+		    	                System.out.println("error !!!");
+		    	            }
+		    	        } catch (Exception e) {
+		    	            System.out.println(e);
+		    	        }    
 		    	        
-		    	        friendService.insertProfile(profile);
-		    	        
-		    	        //null 체크
-		    	        
-		    	   return "/friend/friendHome";
+		    	        return "/friend/friendHome";
+			
 		    }
 		
 		/**내 프로필 수정*/
@@ -207,14 +301,21 @@ public class MatchingFriendController {
 			return "/friend/friendList";
 		}
 		
-		/** 친구 찾기 메인 */
+		/** 친구 찾기 메인 
+		 * @throws IOException */
 		@RequestMapping("/friend/findFriend")
-		public String findFriend(HttpSession session, Model model) {
+		public String findFriend(HttpSession session, HttpServletResponse response, Model model) throws IOException {
 			
 			String id= (String)session.getAttribute("id");
 			
 			//회원들 전체 프로필 불러오기 - 현재 사용자 제외
 			ArrayList<Profile> profile = friendService.getAllProfile(id);
+			
+			//현재 친구 관계인 사람도 제외
+			ArrayList<Friend> friend = friendService.getMyFriend(id);
+			
+			System.out.println("arraylist 버전의 "+friend);
+		//	System.out.println("String 버전의 "+myFriend);
 			
 			//친구 추천 매칭
 			//(1) 같은 연령대인 사람을 추천해줄까?
@@ -224,6 +325,16 @@ public class MatchingFriendController {
 			
 			//(2) 같은 취미를 가지고 있는 사람 추천
 			String interest = friendService.getMyInterest(id);
+			
+			if(interest == null) {
+				response.setContentType("text/html;charset=utf-8");
+    			PrintWriter out = response.getWriter();
+    			out.println("<script>alert('[안내] 프로필을 입력한 회원만 친구 찾기가 가능합니다.'); </script>");
+    			out.flush();
+
+    			return "/friend/friendHome";
+				
+			}
 			String[] splited = interest.split(",");
 			
 			String separator = "|"; 
@@ -247,7 +358,10 @@ public class MatchingFriendController {
 		    sameAge.removeAll(sameInterest);
 		    sameInterest.removeAll(sameAge);
 		
-			
+		    
+		    System.out.println("sameAge"+sameAge);
+		    System.out.println("sameInterest"+sameInterest);
+		    
 			model.addAttribute("id",id);
 			model.addAttribute("sameAge", sameAge);
 			model.addAttribute("sameInterest", sameInterest);
@@ -266,7 +380,7 @@ public class MatchingFriendController {
 			int result2 = friendService.addFriendToo(id, friend);
 			
 			if(result==1&&result2==1) {
-				return "/friend/friendList";
+				  return "redirect:/friend/friendHome";
 			}else {
 				model.addAttribute("title","[오류] 친구 추가 실패");
 				model.addAttribute("message", "친구 추가를 실패하였습니다. 관리자에게 문의하거나 다시 시도해주세요");
@@ -406,6 +520,7 @@ public class MatchingFriendController {
 
 				    	                int faceCount =  Integer.parseInt(String.valueOf(dataObject.get("faceCount")));
 				    	                System.out.println("얼굴 인식 결과"+faceCount);
+				    	                System.out.println(dataObject);
 				    	                
 				    	                //얼굴이 나와있는 정상 프로필 사진 전송
 				    	                if(faceCount == 1) {

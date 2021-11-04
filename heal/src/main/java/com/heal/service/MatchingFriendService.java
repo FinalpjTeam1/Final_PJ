@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.heal.dao.FriendDao;
+import com.heal.dto.Friend;
 import com.heal.dto.Member;
 import com.heal.dto.Profile;
 
@@ -102,6 +103,10 @@ public class MatchingFriendService {
 		
 		return result;
 	}
-	
 
+	public ArrayList<Friend> getMyFriend(String id) {
+		return dao.getMyFriend(id);
+	}
+
+	
 }
