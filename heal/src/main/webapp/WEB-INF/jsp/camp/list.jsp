@@ -16,6 +16,25 @@
 
 	<!-- CSS here -->
  	<jsp:include page="../inc/css.jsp" />
+  	<style>
+	input[type=text] {
+  		background-color: white;
+  		background-position: 10px 10px;
+  		background-repeat: no-repeat;
+  		padding: 10px 100px;
+	}
+	
+	input[type=button], input[type=submit], input[type=reset] {
+  		background-color: #4CAF50;
+  		border: none;
+  		color: white;
+  		padding: 11px 32px;
+  		text-decoration: none;
+  		margin: 4px 2px;
+  		cursor: pointer;
+  
+	}
+  	</style>
    </head>
 
 
@@ -48,9 +67,9 @@
   <div class="favourite-place place-padding">
      <div class="container">
      <form action="/camp/search" method="post">
-    <div class="input-form" style="text-align: center;">
-       <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" style="font-size:15px;">
-       <input class="btn-small" type="submit" value="검색">  
+    <div style="text-align:center;">
+       <input type="text" id="keyword" name="keyword" placeholder="검색어를 입력하세요" style="text-align:center; font-size:15px;">
+       <input type="submit" value="검색">  
     </div>
     </form>
     <br>

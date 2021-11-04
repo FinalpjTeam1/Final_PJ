@@ -38,7 +38,7 @@
                           <!-- Logo -->
                           <div class="col-xl-2 col-lg-2 col-md-1">
                               <div class="logo">
-                                <a href="index.html"><img src="../assets/img/logo/logo.png" alt=""></a>
+                                <a href="/"><img src="../assets/img/logo/logo.png" alt=""></a>
                               </div>
                           </div>
                           <div class="col-xl-10 col-lg-10 col-md-10">
@@ -46,7 +46,7 @@
                               <div class="main-menu f-right d-none d-lg-block">
                                   <nav>               
                                       <ul id="navigation">                                                                                                                                     
-                                            <li><a href="../index.jsp">Home</a></li>
+                                            <li><a href="/">Home</a></li>
                                             <li><a href="#" onclick="return false;">Map</a>
                                                 <ul class="submenu">
                                                     <li><a href="../trail/sidoMap">sidoMap</a></li>
@@ -56,7 +56,7 @@
                                             </li>
                                             <li><a href="/friend/friendHome">친구 찾기</a></li>
                                             <li><a href="/qnaboard/boardList"> Q & A </a></li>
-                                            <li><a href="/review/list">리뷰 게시판</a></li>
+                                            <li><a href="/review/list">후기 게시판</a></li>
                                             <li><a href="#" onclick="return false;"></a></li>
                                             <c:choose>
 												<c:when test="${(empty memberId && empty grade) || empty dto}">
