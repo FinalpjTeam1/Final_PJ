@@ -31,11 +31,11 @@
 
 	<insert id="insertMember"  parameterType="map">
 	Insert into member(
-	id, pw, nick, mobile, gender, age
+	id, pw, nick, mobile, gender, age, last_login
 	)	
 	VALUES
 	(
-	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}
+	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}, #{last_login}
 	)
 	
 	</insert>
@@ -61,9 +61,16 @@
 	</delete>
 	
 	
-	<insert id="updateLastLogin" >
-       	UPDATE MEMBER SET last_login = #{last} WHERE ID = #{id}
-      </insert>
+	<update id="updateLastLogin"  >
+       	UPDATE MEMBER SET last_login = #{last_login} WHERE ID = #{id}
+      </update>
+      
+      	<select id="userPw" parameterType="String"
+		resultType="com.heal.dto.Member">
+		SELECT *
+		FROM member
+		WHERE id=#{id}
+	</select>
 </mapper>
 
 

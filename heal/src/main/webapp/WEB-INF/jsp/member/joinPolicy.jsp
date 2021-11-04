@@ -9,6 +9,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- CSS -->
+<jsp:include page="../inc/css.jsp" />
 <title>가입페이지</title>
 <style>
 .h2 {
@@ -131,7 +133,7 @@ textarea[readonly="readonly"], textarea[disabled="disabled"] {
 
 </head>
 <body>
-
+<jsp:include page="../inc/header.jsp" />
 	<!-- content -->
 	<div style="padding: 150px; margin: auto;">
 		<form id="policy" action="/member/joinPolicy" method="post">
@@ -549,6 +551,7 @@ textarea[readonly="readonly"], textarea[disabled="disabled"] {
 	}; 
 	</script>
 	
-
+<jsp:include page="../inc/footer.jsp" />
+<jsp:include page="../inc/js.jsp" />
 </body>
 </html>

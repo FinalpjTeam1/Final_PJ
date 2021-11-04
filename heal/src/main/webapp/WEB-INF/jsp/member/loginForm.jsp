@@ -23,26 +23,26 @@
 		<div class="block xl:grid grid-cols-2 gap-4">
 			<!-- BEGIN: Login Info -->
 			<div class="hidden xl:flex flex-col min-h-screen">
-				<a href="" class="-intro-x flex items-center pt-5"> <img
+				<a href="/" class="-intro-x flex items-center pt-5"> <img
 					alt="Icewall Tailwind HTML Admin Template" class="w-6"
-					src="/img/logo.svg"> <span class="text-white text-lg ml-3">
+					src="../assets/img/logo/logo.png"> <span class="text-white text-lg ml-3">
 						산타<span class="font-medium">클로스</span>
 				</span>
 				</a>
 				<div class="my-auto">
 					<img alt="Icewall Tailwind HTML Admin Template"
-						class="-intro-x w-1/2 -mt-16" src="/img/illustration.svg">
+						class="-intro-x w-1/2 -mt-16" src="../assets/img/logo/logo.png">
 					<div
 						class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-						소개글 <br> ...
+					<br> 
 					</div>
 					<div
-						class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-gray-500">?</div>
+						class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-gray-500"></div>
 				</div>
 			</div>
 			<!-- END: Login Info -->
 			<!-- BEGIN: Login Form -->
-			<form action="/login" name="loginForm" id="loginForm"  method="post"
+			<form action="/member/userLogin" name="loginForm" id="loginForm"  method="post"
 				class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
 				<div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
 					<div

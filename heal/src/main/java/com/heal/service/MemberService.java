@@ -92,10 +92,20 @@ public class MemberService {
 	
 	/** 로그인 날짜 갱신
 	 * @param id */
-	public int updateLastLogin(String last, String id) {
-		return memberDao.updateLastLogin(last, id);
+	public int updateLastLogin(String last_login, String id) {
+		return memberDao.updateLastLogin(last_login, id);
 	}
 
+	public Member userPw(Member dto) {
+		return memberDao.userPw(dto);
+	}
+	
+	public int userLogin(Member dto) {
+		Member vo = new Member();
+		vo.setId(dto.getId());
+
+			return 0;
+		}
 
 	
 }

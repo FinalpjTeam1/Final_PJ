@@ -59,13 +59,14 @@
                                             <li><a href="/review/list">후기 게시판</a></li>
                                             <li><a href="#" onclick="return false;"></a></li>
                                             <c:choose>
-												<c:when test="${(empty memberId && empty grade) || empty dto}">
-													<li><a href="/loginForm">Login</a></li>
+												<c:when test="${sessionScope.login eq null}">
+													<li><a href="/member/login">Login</a></li>
 													<li><a href="/member/joinPolicy">Join</a></li>
 												</c:when>
-												<c:when test="${(not empty memberId && not empty grade) || not empty dto}">
+												<c:otherwise>
+													<li><a href="/member/info">내정보</a></li>
 													<li><a href="/logout">Logout</a></li>
-												</c:when>
+												</c:otherwise>
 											</c:choose>
                                        </ul>
                                   </nav>

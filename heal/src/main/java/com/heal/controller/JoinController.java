@@ -1,5 +1,8 @@
 package com.heal.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,11 +17,9 @@ import com.heal.util.BCrypt;
 //import com.heal.util.SHA256;
 import com.heal.util.SHA256;
 
-import lombok.extern.slf4j.Slf4j;
 
 
 @Controller
-@Slf4j
 @RequestMapping("/member")
 public class JoinController {
 
@@ -40,17 +41,22 @@ public class JoinController {
 	public ModelAndView memberJoin(@ModelAttribute Member dto) {
 		ModelAndView mav = new ModelAndView();
 		int result = 0;
-		
+		//로그인 시간 보내기 
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss"); 
+		Date now = new Date(); 
+		String now_dt = format.format(now);
+
+		String last = now_dt.trim();
 		try {
 			SHA256 sha = SHA256.getInsatnce();
 			String shaPass1 = dto.getPw();
 			String shaPass = sha.getSha256(shaPass1.getBytes());
-			log.debug("암호화::"+shaPass);
 			String bcPass= BCrypt.hashpw(shaPass, BCrypt.gensalt());
 			dto.setPw(bcPass);
+			dto.setLast_login(last);
 		}catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}	
 		result = memberService.insertMember(dto);
 		switch (result) {
 		case 1:
