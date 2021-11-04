@@ -28,7 +28,7 @@ public class NeedToLoginInterceptor implements HandlerInterceptor {
 			PrintWriter out = response.getWriter();
 			out.append("<script>");
 			out.append("alert('[안내] 로그인 후 이용 가능한 서비스 입니다.');");
-			out.append("location.replace('/loginForm');");
+			out.append("location.replace('/member/login');");
 			out.append("</script>");
 			
 			// 경고메세지 출력없이 로그인페이지 이동 요청

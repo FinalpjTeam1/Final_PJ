@@ -3,11 +3,12 @@
  */
 
 window.onload = function() {
-    drawMap('#sidomap');
+    drawMap1('#sidomap');
+    drawMap2('#trailmap');
 };
 
 	/* 지도 그리기 */
-	function drawMap(target) {
+	function drawMap1(target) {
 	    var width = 700; //지도의 넓이
 	    var height = 700; //지도의 높이
 	    var initialScale = 5500; //확대시킬 값
@@ -36,7 +37,7 @@ window.onload = function() {
 	        .attr('class', 'map')
 	        .style("background-color","#fff");
 	
-	    var states = svg
+	    var states = trails = svg
 	        .append('g')
 	        .attr('id', 'states')
 	        .call(zoom);
@@ -47,7 +48,8 @@ window.onload = function() {
 	        .attr('width', width + 'px')
 	        .attr('height', height + 'px')
 	        .attr("fill", "#fff"); //지도 배경색
-	
+	        
+	        
 	    /*geoJson데이터 파싱하여 지도그리기 */
 	    d3.json('/json/sidoMap.json', function(json) {
 	        states
@@ -75,6 +77,7 @@ window.onload = function() {
 	                return d.properties.name;
 	            });
 	    });
+	    
 
     /* 텍스트 위치 (하드코딩으로 위치 조절) */
     function translateTolabel(d) {
@@ -99,5 +102,64 @@ window.onload = function() {
         projection.translate(d3.event.translate).scale(d3.event.scale);
         states.selectAll('path').attr('d', path);
         labels.attr('transform', translateTolabel);
+        trails.selectAll('path').attr('d', path);
+    }
+}
+
+function drawMap2(target) {
+	    var width = 700; //지도의 넓이
+	    var height = 700; //지도의 높이
+	    var initialScale = 5500; //확대시킬 값
+	    var initialX = -11900; //초기 위치값 X
+	    var initialY = 4050; //초기 위치값 Y
+	
+	    var projection = d3.geo
+	        .mercator()
+	        .scale(initialScale)
+	        .translate([initialX, initialY]);
+	    var path = d3.geo.path().projection(projection);
+	    var zoom = d3.behavior
+	        .zoom()
+	        .translate(projection.translate())
+	        .scale(projection.scale())
+	        .scaleExtent([height, 800 * height])
+	        .on('zoom', zoom);
+	
+	    var svg = d3
+	        .select(target)
+	        .append('svg')
+	        .attr('width', width + 'px')
+	        .attr('height', height + 'px')
+	        .attr('id', 'map')
+	        .attr('class', 'map')
+	        .style("background-color","#fff");
+	
+	    var trails = svg
+	        .append('g')
+	        .attr('id', 'trails')
+	        .call(zoom);
+	    
+	    trails
+	        .append('rect')
+	        .attr('class', 'background')
+	        .attr('width', width + 'px')
+	        .attr('height', height + 'px')
+	        .attr("fill", "#000"); //지도 배경색
+	        
+	        
+	    /* 등산로 그리기 */
+	    d3.json('/resources/json/trail/11/11 (1).json', function(json) {
+	        trails
+	     		.selectAll('path')
+	     		.data(json.features.geometry.paths[0])
+	     		.enter()
+	            .append('path')
+	            .attr('d', path)
+	
+	    });
+	    
+	  function zoom() {
+        projection.translate(d3.event.translate).scale(d3.event.scale);
+        trails.selectAll('path').attr('d', path);
     }
 }

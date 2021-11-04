@@ -45,6 +45,10 @@ public class JoinController {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss"); 
 		Date now = new Date(); 
 		String now_dt = format.format(now);
+		
+		SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd"); 
+		Date today2 = new Date(); 
+		String today3 = format.format(today2);
 
 		String last = now_dt.trim();
 		try {
@@ -54,13 +58,15 @@ public class JoinController {
 			String bcPass= BCrypt.hashpw(shaPass, BCrypt.gensalt());
 			dto.setPw(bcPass);
 			dto.setLast_login(last);
+			dto.setGrade("M");
+			dto.setEntry_date(today3);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}	
 		result = memberService.insertMember(dto);
 		switch (result) {
 		case 1:
-			mav.setViewName("redirect:/loginForm");
+			mav.setViewName("redirect:/login");
 			break;
 
 		default:

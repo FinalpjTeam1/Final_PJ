@@ -51,7 +51,6 @@ public class MatchingFriendController {
 		public String friendHome(HttpSession session, Model model) {
 
 			String id= (String)session.getAttribute("id");
-			
 			//내 프로필 불러오기
 			Profile profile = friendService.getProfile(id);
 			

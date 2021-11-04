@@ -31,11 +31,11 @@
 
 	<insert id="insertMember"  parameterType="map">
 	Insert into member(
-	id, pw, nick, mobile, gender, age, last_login
+	id, pw, nick, mobile, gender, age, last_login, grade, entry_date
 	)	
 	VALUES
 	(
-	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}, #{last_login}
+	#{id}, #{pw}, #{nick}, #{mobile}, #{gender}, #{age}, #{last_login}, #{grade}, #{entry_date}
 	)
 	
 	</insert>

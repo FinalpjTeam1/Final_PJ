@@ -78,6 +78,7 @@ public class LoginController {
 				log.debug("dto :: " + dto);
 				// 로그인 성공
 				session.setAttribute("login", login);
+				session.setAttribute("id", id);
 				memberService.updateLastLogin(last_login, id);
 				mav.setViewName("redirect:/");
 			}
